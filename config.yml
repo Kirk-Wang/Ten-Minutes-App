@@ -1,0 +1,13 @@
+# Example configuration file for the server.
+# Save it to `config.yml` when edited
+
+server:
+  port: 80 # the port the HTTP server will listen on
+  
+  responseheaders: # response headers are added to every response (default: none)
+    Access-Control-Allow-Origin: "*"
+    Access-Control-Allow-Methods: "GET,POST"
+
+database: # for database see (configure database section)
+  dbname: typicode
+  connection: mongodb://localhost:27017
