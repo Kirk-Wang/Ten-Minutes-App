@@ -1,27 +1,26 @@
 package database
 
 import (
-	"github.com/mongodb/mongo-go-driver/mongo"
-	"github.com/mongodb/mongo-go-driver/mongo/clientopt"
+	"context"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+	"time"
 )
 
 var database *mongo.Database
 
-func New(connection, dbname) (*mongo.Database, error) {
+func New(connection string, dbname string) (*mongo.Database, error) {
 	if database == nil {
-		client, err := mongo.NewClientWithOptions(
-			env.Get().MongoURL,
-			clientopt.ServerSelectionTimeout(time.Second))
+		client, err := mongo.NewClient(options.Client().ApplyURI(connection))
 		if err != nil {
-			log.Fatal(err)
 			return nil, err
 		}
-		err = client.Connect(context.TODO())
+		ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+		defer cancel()
+		err = client.Connect(ctx)
 		if err != nil {
-			log.Fatal(err)
 			return nil, err
 		}
-
 		database = client.Database(dbname)
 	}
 	return database, nil
