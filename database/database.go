@@ -9,6 +9,7 @@ import (
 
 var database *mongo.Database
 
+// New creates a new wrapper for the mongo.
 func New(connection string, dbname string) (*mongo.Database, error) {
 	if database == nil {
 		client, err := mongo.NewClient(options.Client().ApplyURI(connection))
