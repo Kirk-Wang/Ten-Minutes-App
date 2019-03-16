@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-// New is
+// New creates a new wrapper for the mongo-go-driver.
 func New(connection, dbname string) (*TenDatabase, error) {
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
