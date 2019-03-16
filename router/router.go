@@ -9,10 +9,10 @@ import (
 )
 
 // Create creates the gin engine with all routes.
-func Create(db *mongo.Database, vInfo *model.VersionInfo) (*gin.Engine, func()) {
+func Create(db *mongo.Database, vInfo *model.VersionInfo) *gin.Engine {
 	g := gin.New()
 
-	g.Use(gin.Logger(), gin.Recovery(), error.Handler(), location.Default())
+	g.Use(gin.Logger(), gin.Recovery(), error.Handler())
 	g.NoRoute(error.NotFound())
 
 	// swagger:operation GET /version version getVersion
@@ -30,4 +30,5 @@ func Create(db *mongo.Database, vInfo *model.VersionInfo) (*gin.Engine, func()) 
 		ctx.JSON(200, vInfo)
 	})
 
+	return g
 }

@@ -10,6 +10,7 @@ import (
 	"github.com/lotteryjs/ten-minutes-api/mode"
 	"github.com/lotteryjs/ten-minutes-api/model"
 	"github.com/lotteryjs/ten-minutes-api/router"
+	"github.com/lotteryjs/ten-minutes-api/runner"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )

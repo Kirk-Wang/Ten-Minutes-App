@@ -2,7 +2,7 @@
 # Save it to `config.yml` when edited
 
 server:
-  port: 80 # the port the HTTP server will listen on
+  port: 6868 # the port the HTTP server will listen on
   
   responseheaders: # response headers are added to every response (default: none)
     Access-Control-Allow-Origin: "*"

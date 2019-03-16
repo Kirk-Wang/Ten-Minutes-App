@@ -7,6 +7,7 @@ import (
 	"unicode"
 
 	"github.com/gin-gonic/gin"
+	"github.com/lotteryjs/ten-minutes-api/model"
 	"gopkg.in/go-playground/validator.v8"
 )
 
