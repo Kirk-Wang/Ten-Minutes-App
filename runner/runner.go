@@ -1,14 +1,12 @@
 package runner
 
 import (
-	"crypto/tls"
 	"fmt"
 	"log"
-	"net"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gotify/server/config"
+	"github.com/lotteryjs/ten-minutes-api/config"
 )
 
 // Run starts the http server
