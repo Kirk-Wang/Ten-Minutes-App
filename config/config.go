@@ -12,7 +12,7 @@ type Configuration struct {
 		ResponseHeaders map[string]string
 	}
 	Database struct {
-		Dialect    string `default:""`
+		Dbname     string `default:""`
 		Connection string `default:""`
 	}
 }

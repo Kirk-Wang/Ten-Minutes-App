@@ -1,7 +1,10 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"math/rand"
 	"time"
 
@@ -11,7 +14,7 @@ import (
 )
 
 var (
-	// Version the version of API.
+	// Version the version of TMAPI.
 	Version = "unknown"
 	// Commit the git commit hash of this version.
 	Commit = "unknown"
@@ -25,15 +28,18 @@ func main() {
 	vInfo := &model.VersionInfo{Version: Version, Commit: Commit, BuildDate: BuildDate}
 	mode.Set(Mode)
 
-	fmt.Println("Starting API version", vInfo.Version+"@"+BuildDate)
+	fmt.Println("Starting TMAPI version", vInfo.Version+"@"+BuildDate)
 	rand.Seed(time.Now().UnixNano())
 	conf := config.Get()
 
-	db, err := database.New(conf.Database.Dialect, conf.Database.Connection)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(conf.Database.Connection))
 	if err != nil {
 		panic(err)
 	}
-	defer db.Close()
+	defer client.Disconnect(ctx)
+	db := client.Database(conf.Database.Dbname)
 
 	engine, closeable := router.Create(db, vInfo, conf)
 	defer closeable()
