@@ -20,6 +20,7 @@ func Create(db *mongo.Database, vInfo *model.VersionInfo) *gin.Engine {
 
 	authAdmin := g.Group("/user")
 	{
+		authAdmin.GET("", userHandler.GetUsers)
 		authAdmin.POST("", userHandler.CreateUser)
 	}
 
