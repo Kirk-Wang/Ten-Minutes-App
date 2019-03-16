@@ -18,6 +18,11 @@ func Create(db *mongo.Database, vInfo *model.VersionInfo) *gin.Engine {
 
 	userHandler := api.UserAPI{DB: db, PasswordStrength: conf.PassStrength}
 
+	authAdmin := g.Group("/user")
+	{
+		authAdmin.POST("", userHandler.CreateUser)
+	}
+
 	// swagger:operation GET /version version getVersion
 	//
 	// Get version information.
