@@ -23,7 +23,7 @@ type UserExternal struct {
 	// read only: true
 	// required: true
 	// example: 25
-	ID uint `json:"id"`
+	ID primitive.ObjectID `json:"id"`
 	// The user name. For login.
 	//
 	// required: true
