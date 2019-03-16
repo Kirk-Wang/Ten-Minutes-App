@@ -3,6 +3,7 @@ package api
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
+	"github.com/lotteryjs/ten-minutes-api/auth/password"
 	"github.com/lotteryjs/ten-minutes-api/model"
 )
 
