@@ -35,7 +35,7 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 	conf := config.Get()
 
-	// connect mongodb
+	// connect to mongodb
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(conf.Database.Connection))
