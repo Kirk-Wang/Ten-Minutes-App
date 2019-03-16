@@ -52,7 +52,8 @@ func main() {
 		panic(err)
 	}
 
-	db := client.Database(conf.Database.Dbname)
+	// db := client.Database()
+	db, err := database.New(client, conf.Database.Dbname)
 	engine := router.Create(db, vInfo)
 	runner.Run(engine, conf)
 }
