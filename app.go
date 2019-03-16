@@ -36,21 +36,21 @@ func main() {
 	conf := config.Get()
 
 	// connect to mongodb
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer cancel()
-	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(conf.Database.Connection))
-	if err != nil {
-		panic(err)
-	}
-	defer client.Disconnect(ctx)
+	// ctx, cancel := context.WithTimeout(context.Background(), *time.Second)
+	// defer cancel()
+	// client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(conf.Database.Connection))
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// defer client.Disconnect(ctx)
 
 	// ping mongod
-	ctx, cancel = context.WithTimeout(context.Background(), 2*time.Second)
-	defer cancel()
-	err = client.Ping(ctx, readpref.Primary())
-	if err != nil {
-		panic(err)
-	}
+	// ctx, cancel = context.WithTimeout(context.Background(), 2*time.Second)
+	// defer cancel()
+	// err = client.Ping(ctx, readpref.Primary())
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	// db := client.Database()
 	db, err := database.New(client, conf.Database.Dbname)
