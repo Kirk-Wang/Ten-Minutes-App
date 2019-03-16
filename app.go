@@ -13,6 +13,7 @@ import (
 	"github.com/lotteryjs/ten-minutes-api/runner"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
 var (
@@ -34,6 +35,7 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 	conf := config.Get()
 
+	// connect mongodb
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(conf.Database.Connection))
@@ -41,9 +43,16 @@ func main() {
 		panic(err)
 	}
 	defer client.Disconnect(ctx)
+
+	// ping mongod
+	ctx2, cancel2 := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel2()
+	err = client.Ping(ctx2, readpref.Primary())
+	if err != nil {
+		panic(err)
+	}
+
 	db := client.Database(conf.Database.Dbname)
-
 	engine := router.Create(db, vInfo)
-
 	runner.Run(engine, conf)
 }
