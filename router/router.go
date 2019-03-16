@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
 
+	"github.com/lotteryjs/ten-minutes-api/api"
 	"github.com/lotteryjs/ten-minutes-api/error"
 	"github.com/lotteryjs/ten-minutes-api/model"
 )
@@ -14,6 +15,8 @@ func Create(db *mongo.Database, vInfo *model.VersionInfo) *gin.Engine {
 
 	g.Use(gin.Logger(), gin.Recovery(), error.Handler())
 	g.NoRoute(error.NotFound())
+
+	userHandler := api.UserAPI{DB: db, PasswordStrength: conf.PassStrength}
 
 	// swagger:operation GET /version version getVersion
 	//
