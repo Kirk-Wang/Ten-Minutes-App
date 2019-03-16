@@ -93,10 +93,6 @@ func (a *UserAPI) CreateUser(ctx *gin.Context) {
 		internal := a.toInternalUser(&user, []byte{})
 		if a.DB.GetUserByName(internal.Name) == nil {
 			a.DB.CreateUser(internal)
-			// if err := a.UserChangeNotifier.fireUserAdded(internal.ID); err != nil {
-			// 	ctx.AbortWithError(500, err)
-			// 	return
-			// }
 			ctx.JSON(200, toExternalUser(internal))
 		} else {
 			ctx.AbortWithError(400, errors.New("username already exists"))
