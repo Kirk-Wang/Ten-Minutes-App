@@ -3,8 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"math/rand"
 	"time"
 
@@ -12,6 +10,8 @@ import (
 	"github.com/lotteryjs/ten-minutes-api/mode"
 	"github.com/lotteryjs/ten-minutes-api/model"
 	"github.com/lotteryjs/ten-minutes-api/router"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var (
