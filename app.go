@@ -41,7 +41,7 @@ func main() {
 	defer client.Disconnect(ctx)
 	db := client.Database(conf.Database.Dbname)
 
-	engine, closeable := router.Create(db, vInfo, conf)
+	engine, closeable := router.Create(db, vInfo)
 	defer closeable()
 
 	runner.Run(engine, conf)
