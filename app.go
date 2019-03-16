@@ -45,9 +45,9 @@ func main() {
 	defer client.Disconnect(ctx)
 
 	// ping mongod
-	ctx2, cancel2 := context.WithTimeout(context.Background(), 2*time.Second)
-	defer cancel2()
-	err = client.Ping(ctx2, readpref.Primary())
+	ctx, cancel = context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+	err = client.Ping(ctx, readpref.Primary())
 	if err != nil {
 		panic(err)
 	}
