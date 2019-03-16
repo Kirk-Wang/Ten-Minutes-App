@@ -11,6 +11,7 @@ import (
 	"github.com/lotteryjs/ten-minutes-api/config"
 	"github.com/lotteryjs/ten-minutes-api/mode"
 	"github.com/lotteryjs/ten-minutes-api/model"
+	"github.com/lotteryjs/ten-minutes-api/router"
 )
 
 var (
@@ -41,8 +42,7 @@ func main() {
 	defer client.Disconnect(ctx)
 	db := client.Database(conf.Database.Dbname)
 
-	engine, closeable := router.Create(db, vInfo)
-	defer closeable()
+	engine := router.Create(db, vInfo)
 
 	runner.Run(engine, conf)
 }
