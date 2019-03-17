@@ -26,14 +26,14 @@ func New(connection, dbname string) (*TenDatabase, error) {
 	return &TenDatabase{DB: db, Client: client, Context: ctx}, nil
 }
 
-// TenDatabase is a wrapper for the gorm framework.
+// TenDatabase is a wrapper for the mongo-go-driver.
 type TenDatabase struct {
 	DB      *mongo.Database
 	Client  *mongo.Client
 	Context context.Context
 }
 
-// Close closes the gorm database connection.
+// Close closes the mongo-go-driver connection.
 func (d *TenDatabase) Close() {
 	d.Client.Disconnect(d.Context)
 }
