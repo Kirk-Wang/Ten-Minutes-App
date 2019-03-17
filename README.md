@@ -6,8 +6,6 @@
 <img src="https://raw.githubusercontent.com/gin-gonic/logo/master/color.png" width="150">
 </p>
 
-# refs
-
-[mongo-go-examples](https://github.com/simagix/mongo-go-examples)
+# refs (source code)
 
 [gotify/server](https://github.com/gotify/server)
