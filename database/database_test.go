@@ -1,8 +1,6 @@
 package database
 
 import (
-	"context"
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 	"testing"
 )
