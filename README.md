@@ -6,6 +6,6 @@
 <img src="https://raw.githubusercontent.com/gin-gonic/logo/master/color.png" width="150">
 </p>
 
-# refs (source code)
+# Refs
 
 [gotify/server](https://github.com/gotify/server)
