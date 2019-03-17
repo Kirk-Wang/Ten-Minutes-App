@@ -1,12 +1,12 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"math/rand"
 	"time"
 
 	"github.com/lotteryjs/ten-minutes-api/config"
+	"github.com/lotteryjs/ten-minutes-api/database"
 	"github.com/lotteryjs/ten-minutes-api/mode"
 	"github.com/lotteryjs/ten-minutes-api/model"
 	"github.com/lotteryjs/ten-minutes-api/router"
