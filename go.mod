@@ -10,13 +10,11 @@ require (
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
-	github.com/google/go-cmp v0.2.0 // indirect
 	github.com/leodido/go-urn v1.1.0 // indirect
 	github.com/lotteryjs/configor v1.0.2
 	github.com/mattn/go-isatty v0.0.7 // indirect
 	github.com/stretchr/testify v1.3.0
-	github.com/tidwall/pretty v0.0.0-20180105212114-65a9db5fad51 // indirect
-	github.com/ugorji/go/codec v0.0.0-20190316083543-95c34d148dff // indirect
+	github.com/ugorji/go/codec v0.0.0-20190316192920-e2bddce071ad // indirect
 	github.com/xdg/scram v0.0.0-20180814205039-7eeb5667e42c // indirect
 	github.com/xdg/stringprep v1.0.0 // indirect
 	go.mongodb.org/mongo-driver v1.0.0

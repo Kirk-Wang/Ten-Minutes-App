@@ -9,11 +9,6 @@ server:
     Access-Control-Allow-Methods: "GET,POST"
 
 database: # for database see (configure database section)
-  dbname: typicode
+  dbname: tenapi
   connection: mongodb://root:123456@localhost:27017
-
-defaultuser: # on database creation, api creates an admin user
-  name: admin # the username of the default user
-  pass: admin # the password of the default user
-passstrength: 10 # the bcrypt password strength (higher = better but also slower)
 
