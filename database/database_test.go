@@ -20,3 +20,7 @@ func (s *DatabaseSuite) BeforeTest(suiteName, testName string) {
 	assert.Nil(s.T(), err)
 	s.db = db
 }
+
+func (s *DatabaseSuite) AfterTest(suiteName, testName string) {
+	s.db.Close()
+}
