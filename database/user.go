@@ -37,3 +37,15 @@ func (d *TenDatabase) CreateUser(user *model.User) error {
 	}
 	return nil
 }
+
+// GetUserByName returns the user by the given name or nil.
+func (d *TenDatabase) GetUserByName(name string) (*model.User, error) {
+	var user *model.User
+	err := d.DB.Collection("users").
+		FindOne(nil, bson.D{{Key: "name", Value: name}}).
+		Decode(&user)
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}

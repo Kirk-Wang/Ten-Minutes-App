@@ -12,6 +12,16 @@ type User struct {
 	Admin bool               `bson:"admin"`
 }
 
+// New is
+func (u *User) New() *User {
+	return &User{
+		ID:    primitive.NewObjectID(),
+		Name:  u.Name,
+		Pass:  u.Pass,
+		Admin: u.Admin,
+	}
+}
+
 // UserExternal Model
 //
 // The User holds information about permission and other stuff.
