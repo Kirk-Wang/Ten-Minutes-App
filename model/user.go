@@ -2,6 +2,7 @@ package model
 
 import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"time"
 )
 
 // The User holds
@@ -14,6 +15,8 @@ type User struct {
 	Phone    string             `bson:"phone"`
 	Website  string             `bson:"website"`
 	Company  UserCompany        `bson:"company"`
+	Created  time.Time          `bson:"created"`
+	Updated  time.Time          `bson:"updated"`
 }
 
 // The UserAddress holds
@@ -49,5 +52,7 @@ func (u *User) New() *User {
 		Phone:    u.Phone,
 		Website:  u.Website,
 		Company:  u.Company,
+		Created:  u.Created,
+		Updated:  u.Updated,
 	}
 }
