@@ -1,7 +1,7 @@
 package api
 
 import (
-	"errors"
+	"github.com/lotteryjs/ten-minutes-api/auth/password"
 	"net/http/httptest"
 	"strings"
 	"testing"
@@ -9,7 +9,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/lotteryjs/ten-minutes-api/mode"
 	"github.com/lotteryjs/ten-minutes-api/model"
+	"github.com/lotteryjs/ten-minutes-api/test"
 	"github.com/lotteryjs/ten-minutes-api/test/testdb"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -49,5 +51,4 @@ func (s *UserSuite) Test_CreateUser() {
 	created := s.db.GetUserByName("tom")
 	assert.NotNil(s.T(), created)
 	assert.True(s.T(), password.ComparePassword(created.Pass, []byte("mylittlepony")))
-	assert.True(s.T(), s.notifiedAdd)
 }
