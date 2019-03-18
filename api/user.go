@@ -9,7 +9,6 @@ import (
 
 // The UserDatabase interface for encapsulating database access.
 type UserDatabase interface {
-	GetUsers() []*model.User
 	CreateUser(user *model.User) error
 	GetUserByName(name string) *model.User
 }
@@ -18,40 +17,6 @@ type UserDatabase interface {
 type UserAPI struct {
 	DB               UserDatabase
 	PasswordStrength int
-}
-
-// GetUsers returns all the users
-// swagger:operation GET /user user getUsers
-//
-// Return all users.
-//
-// ---
-// produces: [application/json]
-// security: [clientTokenHeader: [], clientTokenQuery: [], basicAuth: []]
-// responses:
-//   200:
-//     description: Ok
-//     schema:
-//       type: array
-//       items:
-//         $ref: "#/definitions/User"
-//   401:
-//     description: Unauthorized
-//     schema:
-//         $ref: "#/definitions/Error"
-//   403:
-//     description: Forbidden
-//     schema:
-//         $ref: "#/definitions/Error"
-func (a *UserAPI) GetUsers(ctx *gin.Context) {
-	users := a.DB.GetUsers()
-
-	var resp []*model.UserExternal
-	for _, user := range users {
-		resp = append(resp, toExternalUser(user))
-	}
-
-	ctx.JSON(200, resp)
 }
 
 // CreateUser creates a user
