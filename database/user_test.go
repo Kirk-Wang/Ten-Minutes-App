@@ -6,7 +6,7 @@ import (
 )
 
 func (s *DatabaseSuite) TestUser() {
-	kirk := &model.User{Name: "kirk", Pass: []byte{1, 2, 3, 4}, Admin: true}
+	kirk := (&model.User{Name: "kirk", Pass: []byte{1, 2, 3, 4}, Admin: true}).New()
 	err := s.db.CreateUser(kirk)
 	assert.Nil(s.T(), err)
 	assert.Equal(s.T(), kirk, s.db.GetUserByName("kirk"))
