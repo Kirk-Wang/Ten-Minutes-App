@@ -32,6 +32,6 @@ func (s *DatabaseSuite) TestUser() {
 	}).New()
 	err := s.db.CreateUser(kirk)
 	assert.Nil(s.T(), err)
-	assert.Equal(s.T(), kirk, s.db.GetUserByName("kirk"))
+	assert.Equal(s.T(), kirk, s.db.GetUserByName("Leanne Graham"))
 
 }

@@ -16,12 +16,3 @@ type UserDatabase interface {
 type UserAPI struct {
 	DB UserDatabase
 }
-
-// CreateUser creates a user
-func (a *UserAPI) CreateUser(ctx *gin.Context) {
-	user := model.UserExternalWithPass{}
-	ctx.Bind(&user)
-	// if err := ctx.Bind(&user); err == nil {
-
-	// }
-}
