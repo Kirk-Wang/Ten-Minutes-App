@@ -4,66 +4,50 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-// The User holds information about the credentials of a user and its application and client tokens.
+// The User holds
 type User struct {
-	ID    primitive.ObjectID `bson:"_id"`
-	Name  string             `bson:"name"`
-	Pass  []byte             `bson:"pass"`
-	Admin bool               `bson:"admin"`
+	ID       primitive.ObjectID `bson:"_id"`
+	Name     string             `bson:"name"`
+	UserName string             `bson:"username"`
+	Email    string             `bson:"email"`
+	Address  UserAddress        `bson:"address"`
+	Phone    string             `bson:"phone"`
+	Website  string             `bson:"website"`
+	Company  UserCompany        `bson:"company"`
+}
+
+// The UserAddress holds
+type UserAddress struct {
+	Street  string         `bson:"street"`
+	Suite   string         `bson:"suite"`
+	City    string         `bson:"city"`
+	Zipcode string         `bson:"zipcode"`
+	Geo     UserAddressGeo `bson:"geo"`
+}
+
+// The UserAddressGeo holds
+type UserAddressGeo struct {
+	Lat string `bson:"lat"`
+	Lng string `bson:"lng"`
+}
+
+// The UserCompany holds
+type UserCompany struct {
+	Name        string `bson:"name"`
+	CatchPhrase string `bson:"catchPhrase"`
+	BS          string `bson:"bs"`
 }
 
 // New is
 func (u *User) New() *User {
 	return &User{
-		ID:    primitive.NewObjectID(),
-		Name:  u.Name,
-		Pass:  u.Pass,
-		Admin: u.Admin,
+		ID:       primitive.NewObjectID(),
+		Name:     u.Name,
+		UserName: u.UserName,
+		Email:    u.Email,
+		Address:  u.Address,
+		Phone:    u.Phone,
+		Website:  u.Website,
+		Company:  u.Company,
 	}
-}
-
-// UserExternal Model
-//
-// The User holds information about permission and other stuff.
-//
-// swagger:model User
-type UserExternal struct {
-	// The user id.
-	//
-	// read only: true
-	// required: true
-	// example: 25
-	ID uint `json:"id"`
-	// The user name. For login.
-	//
-	// required: true
-	// example: unicorn
-	Name string `binding:"required" json:"name" query:"name" form:"name"`
-	// If the user is an administrator.
-	//
-	// example: true
-	Admin bool `json:"admin" form:"admin" query:"admin"`
-}
-
-// UserExternalWithPass Model
-//
-// The UserWithPass holds information about the credentials and other stuff.
-//
-// swagger:model UserWithPass
-type UserExternalWithPass struct {
-	UserExternal
-	UserExternalPass
-}
-
-// UserExternalPass Model
-//
-// The Password for updating the user.
-//
-// swagger:model UserPass
-type UserExternalPass struct {
-	// The user password. For login.
-	//
-	// required: true
-	// example: nrocinu
-	Pass string `json:"pass,omitempty" form:"pass" query:"pass" binding:"required"`
 }
