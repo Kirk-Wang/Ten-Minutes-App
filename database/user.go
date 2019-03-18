@@ -29,3 +29,11 @@ func (d *TenDatabase) GetUsers() ([]*model.User, error) {
 
 	return users, nil
 }
+
+// CreateUser creates a user.
+func (d *TenDatabase) CreateUser(user *model.User) error {
+	if _, err := d.DB.Collection("users").InsertOne(context.Background(), user); err != nil {
+		return err
+	}
+	return nil
+}
