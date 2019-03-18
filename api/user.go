@@ -18,6 +18,5 @@ type UserAPI struct {
 
 // GetUsers returns all the users
 func (a *UserAPI) GetUsers(ctx *gin.Context) {
-	users := a.DB.GetUsers()
-	ctx.JSON(200, users)
+	ctx.JSON(200, a.DB.GetUsers())
 }

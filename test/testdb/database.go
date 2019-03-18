@@ -1,6 +1,7 @@
 package testdb
 
 import (
+	"github.com/lotteryjs/ten-minutes-api/model"
 	"testing"
 
 	"github.com/lotteryjs/ten-minutes-api/database"
@@ -19,4 +20,37 @@ func NewDB(t *testing.T) *Database {
 	assert.Nil(t, err)
 	assert.NotNil(t, db)
 	return &Database{TenDatabase: db, t: t}
+}
+
+// NewUser creates a user and returns the user.
+func (d *Database) NewUser(name string) *model.User {
+	return d.NewUserWithName(name)
+}
+
+// NewUserWithName creates a user with a name and returns the user.
+func (d *Database) NewUserWithName(name string) *model.User {
+	user := (&model.User{
+		Name:     name,
+		UserName: "Bret",
+		Email:    "Sincere@april.biz",
+		Address: model.UserAddress{
+			Street:  "Kulas Light",
+			Suite:   "Apt. 556",
+			City:    "Gwenborough",
+			Zipcode: "92998-3874",
+			Geo: model.UserAddressGeo{
+				Lat: "-37.3159",
+				Lng: "81.1496",
+			},
+		},
+		Phone:   "1-770-736-8031 x56442",
+		Website: "hildegard.org",
+		Company: model.UserCompany{
+			Name:        "Romaguera-Crona",
+			CatchPhrase: "Multi-layered client-server neural-net",
+			BS:          "harness real-time e-markets",
+		},
+	}).New()
+	d.CreateUser(user)
+	return user
 }
