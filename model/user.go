@@ -52,7 +52,7 @@ func (u *User) New() *User {
 		Phone:    u.Phone,
 		Website:  u.Website,
 		Company:  u.Company,
-		Created:  u.Created,
-		Updated:  u.Updated,
+		Created:  time.Now(),
+		Updated:  time.Now(),
 	}
 }
