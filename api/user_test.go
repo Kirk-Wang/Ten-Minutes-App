@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"net/http/httptest"
 	"testing"
 
@@ -35,9 +36,9 @@ func (s *UserSuite) AfterTest(suiteName, testName string) {
 }
 
 func (s *UserSuite) Test_GetUsers() {
-	s.db.NewUser("userA")
-	s.db.NewUser("userB")
-
+	for i := 1; i <= 100; i++ {
+		s.db.NewUser(fmt.Sprintf("User%d", i))
+	}
 	s.a.GetUsers(s.ctx)
 	assert.Equal(s.T(), 200, s.recorder.Code)
 }

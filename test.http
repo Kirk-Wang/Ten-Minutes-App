@@ -1,0 +1,3 @@
+
+# Paging
+GET http://jsonplaceholder.typicode.com/users?_end=5&_order=DESC&_sort=id&_start=0
