@@ -32,20 +32,21 @@ func (d *TenDatabase) GetUsers() ([]*model.User, error) {
 
 // CreateUser creates a user.
 func (d *TenDatabase) CreateUser(user *model.User) error {
-	if _, err := d.DB.Collection("users").InsertOne(context.Background(), user.New()); err != nil {
+	if _, err := d.DB.Collection("users").
+		InsertOne(context.Background(), user.New()); err != nil {
 		return err
 	}
 	return nil
 }
 
 // GetUserByName returns the user by the given name or nil.
-func (d *TenDatabase) GetUserByName(name string) (*model.User, error) {
+func (d *TenDatabase) GetUserByName(name string) *model.User {
 	var user *model.User
 	err := d.DB.Collection("users").
 		FindOne(nil, bson.D{{Key: "name", Value: name}}).
 		Decode(&user)
 	if err != nil {
-		return nil, err
+		return nil
 	}
-	return user, nil
+	return user
 }
