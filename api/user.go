@@ -14,8 +14,7 @@ type UserDatabase interface {
 
 // The UserAPI provides handlers for managing users.
 type UserAPI struct {
-	DB               UserDatabase
-	PasswordStrength int
+	DB UserDatabase
 }
 
 // CreateUser creates a user
