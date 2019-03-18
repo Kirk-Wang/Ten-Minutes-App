@@ -12,16 +12,6 @@ type User struct {
 	Admin bool               `bson:"admin"`
 }
 
-// New is return
-func (u *User) New() *User {
-	return &User{
-		ID:    primitive.NewObjectID(),
-		Name:  u.Name,
-		Pass:  u.Pass,
-		Admin: u.Admin,
-	}
-}
-
 // UserExternal Model
 //
 // The User holds information about permission and other stuff.
@@ -33,12 +23,12 @@ type UserExternal struct {
 	// read only: true
 	// required: true
 	// example: 25
-	ID primitive.ObjectID `json:"id"`
+	ID uint `json:"id"`
 	// The user name. For login.
 	//
 	// required: true
 	// example: unicorn
-	Name string `validate:"required" json:"name" query:"name" form:"name"`
+	Name string `binding:"required" json:"name" query:"name" form:"name"`
 	// If the user is an administrator.
 	//
 	// example: true
@@ -65,5 +55,5 @@ type UserExternalPass struct {
 	//
 	// required: true
 	// example: nrocinu
-	Pass string `json:"pass,omitempty" form:"pass" query:"pass" validate:"required"`
+	Pass string `json:"pass,omitempty" form:"pass" query:"pass" binding:"required"`
 }
