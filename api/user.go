@@ -18,13 +18,6 @@ type UserAPI struct {
 
 // GetUsers returns all the users
 func (a *UserAPI) GetUsers(ctx *gin.Context) {
-	// users := a.DB.GetUsers()
-
-	// var resp []*model.UserExternal
-	// for _, user := range users {
-	// 	resp = append(resp, toExternalUser(user))
-	// }
-
-	// ctx.JSON(200, resp)
-	ctx.JSON(200, "GetUsers")
+	users := a.DB.GetUsers()
+	ctx.JSON(200, users)
 }
