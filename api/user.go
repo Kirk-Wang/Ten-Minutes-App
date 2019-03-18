@@ -9,11 +9,20 @@ import (
 
 // The UserDatabase interface for encapsulating database access.
 type UserDatabase interface {
-	GetUserByName(name string) *model.User
+	CreateUser(user *model.User) error
 }
 
 // The UserAPI provides handlers for managing users.
 type UserAPI struct {
 	DB               UserDatabase
 	PasswordStrength int
+}
+
+// CreateUser creates a user
+func (a *UserAPI) CreateUser(ctx *gin.Context) {
+	user := model.UserExternalWithPass{}
+	ctx.Bind(&user)
+	// if err := ctx.Bind(&user); err == nil {
+
+	// }
 }
