@@ -20,7 +20,7 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo) *gin.Engine {
 
 	authAdmin := g.Group("/user")
 	{
-		authAdmin.POST("", userHandler.CreateUser)
+		authAdmin.GET("", userHandler.GetUsers)
 	}
 
 	g.GET("version", func(ctx *gin.Context) {

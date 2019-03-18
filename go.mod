@@ -9,6 +9,8 @@ require (
 	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/google/go-cmp v0.2.0 // indirect
+	github.com/gotify/server v1.2.1
+	github.com/lotteryjs/configor v1.0.2
 	github.com/mattn/go-isatty v0.0.7 // indirect
 	github.com/stretchr/testify v1.3.0
 	github.com/ugorji/go/codec v0.0.0-20190316192920-e2bddce071ad // indirect
@@ -18,6 +20,6 @@ require (
 	golang.org/x/crypto v0.0.0-20190313024323-a1f597ede03a
 	golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6 // indirect
 	golang.org/x/text v0.3.0 // indirect
-	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect
+	gopkg.in/go-playground/validator.v8 v8.18.2
 	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
