@@ -8,26 +8,26 @@ import (
 )
 
 // GetUsers returns all users.
-func (d *TenDatabase) GetUsers() ([]*model.User, error) {
+func (d *TenDatabase) GetUsers() []*model.User {
 	var users []*model.User
 	cursor, err := d.DB.Collection("users").Find(
 		context.Background(),
 		bson.D{},
 	)
 	if err != nil {
-		return nil, err
+		return nil
 	}
 	defer cursor.Close(context.Background())
 
 	for cursor.Next(context.Background()) {
 		user := &model.User{}
 		if err := cursor.Decode(user); err != nil {
-			return nil, err
+			return nil
 		}
 		users = append(users, user)
 	}
 
-	return users, nil
+	return users
 }
 
 // CreateUser creates a user.
