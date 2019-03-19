@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/lotteryjs/ten-minutes-api/model"
+	"strconv"
 )
 
 // The UserDatabase interface for encapsulating database access.
@@ -17,20 +18,24 @@ type UserAPI struct {
 }
 
 // GetUsers returns all the users
-// _end=5&_order=DESC&_sort=id&_start=0
-
+// _end=5&_order=DESC&_sort=id&_start=0 adapt react-admin
 func (a *UserAPI) GetUsers(ctx *gin.Context) {
-	var (
-		skip  int64 = 0
-		limit int64 = 5
-	)
-	var sortKey string = "_id"
-	var sortVal int = -1
-	// skip := ctx.DefaultQuery("_start", "0")
-	// limit := ctx.DefaultQuery("_end", "10")
-	// sortKey := ctx.DefaultQuery("_sort", "_id")
-	// sortVal := ctx.DefaultQuery("_order", "-1")
-	// ctx.JSON(200, a.DB.GetUsers(skip, limit, sortKey, sortVal))
-	var paging = &model.Paging{&skip, &limit, sortKey, sortVal}
+	start, _ := strconv.ParseInt(ctx.DefaultQuery("_start", "0"), 10, 64)
+	end, _ := strconv.ParseInt(ctx.DefaultQuery("_end", "10"), 10, 64)
+	sort := ctx.DefaultQuery("_sort", "_id")
+
+	var order int
+	order = 1
+	if ctx.DefaultQuery("_order", "DESC") == "DESC" {
+		order = -1
+	}
+
+	var paging = &model.Paging{
+		Skip:    &start,
+		Limit:   &end,
+		SortKey: sort,
+		SortVal: order,
+	}
+
 	ctx.JSON(200, a.DB.GetUsers(paging))
 }
