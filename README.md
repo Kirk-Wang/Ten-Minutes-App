@@ -1,4 +1,6 @@
-# ten-minutes-api
+# Ten-Minutes-Api
+
+adpts to [React-Admin](https://github.com/marmelab/react-admin)
 
 <p align="center">
 <img src="https://github.com/mongodb/mongo-go-driver/raw/master/etc/assets/mongo-gopher.png" width="150">
