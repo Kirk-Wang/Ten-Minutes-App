@@ -20,22 +20,31 @@ type UserAPI struct {
 // GetUsers returns all the users
 // _end=5&_order=DESC&_sort=id&_start=0 adapt react-admin
 func (a *UserAPI) GetUsers(ctx *gin.Context) {
-	start, _ := strconv.ParseInt(ctx.DefaultQuery("_start", "0"), 10, 64)
-	end, _ := strconv.ParseInt(ctx.DefaultQuery("_end", "10"), 10, 64)
-	sort := ctx.DefaultQuery("_sort", "_id")
+	var (
+		start int64
+		end   int64
+		sort  string
+		order int
+	)
 
-	var order int
+	start, _ = strconv.ParseInt(ctx.DefaultQuery("_start", "0"), 10, 64)
+	end, _ = strconv.ParseInt(ctx.DefaultQuery("_end", "10"), 10, 64)
+	sort = ctx.DefaultQuery("_sort", "_id")
 	order = 1
+
+	if sort == "id" {
+		sort = "_id"
+	}
+
 	if ctx.DefaultQuery("_order", "DESC") == "DESC" {
 		order = -1
 	}
 
-	var paging = &model.Paging{
-		Skip:    &start,
-		Limit:   &end,
-		SortKey: sort,
-		SortVal: order,
-	}
-
-	ctx.JSON(200, a.DB.GetUsers(paging))
+	ctx.JSON(200, a.DB.GetUsers(
+		&model.Paging{
+			Skip:    &start,
+			Limit:   &end,
+			SortKey: sort,
+			SortVal: order,
+		}))
 }
