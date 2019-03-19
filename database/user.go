@@ -15,7 +15,7 @@ func (d *TenDatabase) GetUsers() []*model.User {
 	var skip int64 = 40
 	var limit int64 = 5
 	cursor, err := d.DB.Collection("users").
-		Find(nil, bson.D{},
+		Find(context.Background(), bson.D{},
 			&options.FindOptions{
 				Skip:  &skip,
 				Sort:  bson.D{bson.E{Key: "_id", Value: -1}},
