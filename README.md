@@ -1,6 +1,6 @@
 # Ten-Minutes-Api
 
-使用 Gin & Mongodb 构建类似于 [JSONPlaceholder](http://jsonplaceholder.typicode.com/) 格式的 API
+使用最新的 [gin](https://github.com/gin-gonic/gin) & [mongo-go-driver](https://github.com/mongodb/mongo-go-driver) 构建类似于 [JSONPlaceholder](http://jsonplaceholder.typicode.com/) 格式的 API
 
 <p align="center">
 <img src="https://github.com/mongodb/mongo-go-driver/raw/master/etc/assets/mongo-gopher.png" width="150">
