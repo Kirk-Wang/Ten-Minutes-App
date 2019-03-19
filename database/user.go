@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/lotteryjs/ten-minutes-api/model"
@@ -18,7 +19,7 @@ func (d *TenDatabase) GetUsers() []*model.User {
 		Find(nil, bson.D{},
 			&options.FindOptions{
 				Skip: &skip,
-				Sort: bson.D{{"name", -1}},
+				Sort: bson.D{primitive.E{Key: "name", Value: -1}},
 			})
 	if err != nil {
 		return nil
