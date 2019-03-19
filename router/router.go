@@ -18,6 +18,14 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo) *gin.Engine {
 
 	userHandler := api.UserAPI{DB: db}
 
+	g.Use(func(ctx *gin.Context) {
+		ctx.Header("Content-Type", "application/json")
+
+		for header, value := range conf.Server.ResponseHeaders {
+			ctx.Header(header, value)
+		}
+	})
+
 	authAdmin := g.Group("/user")
 	{
 		authAdmin.GET("", userHandler.GetUsers)
