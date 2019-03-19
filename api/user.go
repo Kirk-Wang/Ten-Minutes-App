@@ -40,11 +40,14 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 		order = -1
 	}
 
-	ctx.JSON(200, a.DB.GetUsers(
+	users := a.DB.GetUsers(
 		&model.Paging{
 			Skip:    &start,
 			Limit:   &end,
 			SortKey: sort,
 			SortVal: order,
-		}))
+		})
+
+	ctx.Header("X-Total-Count", strconv.Itoa(len(users)))
+	ctx.JSON(200, users)
 }
