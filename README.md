@@ -14,4 +14,5 @@
 
 # Q
 
-*[Composite literal uses unkeyed fields](https://stackoverflow.com/questions/54548441/composite-literal-uses-unkeyed-fields)
+* [Composite literal uses unkeyed fields](https://stackoverflow.com/questions/54548441/composite-literal-uses-unkeyed-fields)
+* [Convert between int, int64 and string](https://yourbasic.org/golang/convert-int-to-string/)
