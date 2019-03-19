@@ -38,6 +38,6 @@ func main() {
 	}
 	defer db.Close()
 
-	engine := router.Create(db, vInfo，conf)
+	engine := router.Create(db, vInfo, conf)
 	runner.Run(engine, conf)
 }
