@@ -7,19 +7,24 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// GetUsersOptions is query params
+type GetUsersOptions struct {
+	Skip    *int64
+	Limit   *int64
+	sortKey string
+	sortVal string
+}
+
 // GetUsers returns all users.
-// _end=5&_order=DESC&_sort=id&_start=0
 // start, end int, order, sort string
-func (d *TenDatabase) GetUsers() []*model.User {
+func (d *TenDatabase) GetUsers(opts *GetUsersOptions) []*model.User {
 	var users []*model.User
-	var skip int64 = 40
-	var limit int64 = 5
 	cursor, err := d.DB.Collection("users").
 		Find(context.Background(), bson.D{},
 			&options.FindOptions{
-				Skip:  &skip,
-				Sort:  bson.D{bson.E{Key: "_id", Value: -1}},
-				Limit: &limit,
+				Skip:  opts.Skip,
+				Sort:  bson.D{bson.E{Key: opts.sortKey, Value: opts.sortVal}},
+				Limit: opts.Limit,
 			})
 	if err != nil {
 		return nil
