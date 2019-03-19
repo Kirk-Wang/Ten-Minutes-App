@@ -11,3 +11,7 @@
 * [gotify/server](https://github.com/gotify/server)
 * [mongo-go-examples](https://github.com/simagix/mongo-go-examples)
 * [nosql](https://github.com/codeation/nosql)
+
+# Q
+
+*[Composite literal uses unkeyed fields](https://stackoverflow.com/questions/54548441/composite-literal-uses-unkeyed-fields)

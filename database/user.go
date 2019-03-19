@@ -12,12 +12,14 @@ import (
 // start, end int, order, sort string
 func (d *TenDatabase) GetUsers() []*model.User {
 	var users []*model.User
-	var skip int64 = 5
+	var skip int64 = 40
+	var limit int64 = 5
 	cursor, err := d.DB.Collection("users").
 		Find(nil, bson.D{},
 			&options.FindOptions{
-				Skip: &skip,
-				Sort: bson.D{bson.E{Key: "name", Value: -1}},
+				Skip:  &skip,
+				Sort:  bson.D{bson.E{Key: "name", Value: -1}},
+				Limit: &limit,
 			})
 	if err != nil {
 		return nil
