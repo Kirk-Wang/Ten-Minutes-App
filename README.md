@@ -6,6 +6,8 @@
 <img src="https://raw.githubusercontent.com/gin-gonic/logo/master/color.png" width="150">
 </p>
 
+![Schema](./Schema.png)
+
 # Refs
 
 * [gotify/server](https://github.com/gotify/server)
