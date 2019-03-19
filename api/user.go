@@ -8,7 +8,7 @@ import (
 // The UserDatabase interface for encapsulating database access.
 type UserDatabase interface {
 	CreateUser(user *model.User) error
-	GetUsers() []*model.User
+	GetUsers(paging *model.Paging) []*model.User
 }
 
 // The UserAPI provides handlers for managing users.
@@ -25,12 +25,12 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 		limit int64 = 5
 	)
 	var sortKey string = "_id"
-	var sortVal bool = true
-	a.DB.
-		// skip := ctx.DefaultQuery("_start", "0")
-		// limit := ctx.DefaultQuery("_end", "10")
-		// sortKey := ctx.DefaultQuery("_sort", "_id")
-		// sortVal := ctx.DefaultQuery("_order", "-1")
-		// ctx.JSON(200, a.DB.GetUsers(skip, limit, sortKey, sortVal))
-		ctx.JSON(200, a.DB.GetUsers(skip, limit, "_id", true))
+	var sortVal int = -1
+	// skip := ctx.DefaultQuery("_start", "0")
+	// limit := ctx.DefaultQuery("_end", "10")
+	// sortKey := ctx.DefaultQuery("_sort", "_id")
+	// sortVal := ctx.DefaultQuery("_order", "-1")
+	// ctx.JSON(200, a.DB.GetUsers(skip, limit, sortKey, sortVal))
+	var paging = &model.Paging{&skip, &limit, sortKey, sortVal}
+	ctx.JSON(200, a.DB.GetUsers(paging))
 }
