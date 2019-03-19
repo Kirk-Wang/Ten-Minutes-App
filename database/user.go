@@ -9,11 +9,17 @@ import (
 )
 
 // GetUsers returns all users.
+// _end=5&_order=DESC&_sort=id&_start=0
+// start, end int, order, sort string
 func (d *TenDatabase) GetUsers() []*model.User {
 	var users []*model.User
 	var skip int64 = 5
 	cursor, err := d.DB.Collection("users").
-		Find(nil, bson.D{}, &options.FindOptions{Skip: &skip})
+		Find(nil, bson.D{},
+			&options.FindOptions{
+				Skip: &skip,
+				Sort: bson.D{{"name", -1}},
+			})
 	if err != nil {
 		return nil
 	}
