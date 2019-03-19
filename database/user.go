@@ -18,7 +18,7 @@ func (d *TenDatabase) GetUsers() []*model.User {
 		Find(nil, bson.D{},
 			&options.FindOptions{
 				Skip:  &skip,
-				Sort:  bson.D{bson.E{Key: "name", Value: -1}},
+				Sort:  bson.D{bson.E{Key: "_id", Value: -1}},
 				Limit: &limit,
 			})
 	if err != nil {
