@@ -15,6 +15,10 @@ type GetUsersOptions struct {
 	sortVal string
 }
 
+func (d *TenDatabase) NewGetUsersOptions() *GetUsersOptions {
+	return &GetUsersOptions{}
+}
+
 // GetUsers returns all users.
 // start, end int, order, sort string
 func (d *TenDatabase) GetUsers(opts *GetUsersOptions) []*model.User {

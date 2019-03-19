@@ -26,10 +26,11 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 	)
 	var sortKey string = "_id"
 	var sortVal bool = true
-	// skip := ctx.DefaultQuery("_start", "0")
-	// limit := ctx.DefaultQuery("_end", "10")
-	// sortKey := ctx.DefaultQuery("_sort", "_id")
-	// sortVal := ctx.DefaultQuery("_order", "-1")
-	// ctx.JSON(200, a.DB.GetUsers(skip, limit, sortKey, sortVal))
-	ctx.JSON(200, a.DB.GetUsers(skip, limit, "_id", true))
+	a.DB.
+		// skip := ctx.DefaultQuery("_start", "0")
+		// limit := ctx.DefaultQuery("_end", "10")
+		// sortKey := ctx.DefaultQuery("_sort", "_id")
+		// sortVal := ctx.DefaultQuery("_order", "-1")
+		// ctx.JSON(200, a.DB.GetUsers(skip, limit, sortKey, sortVal))
+		ctx.JSON(200, a.DB.GetUsers(skip, limit, "_id", true))
 }
