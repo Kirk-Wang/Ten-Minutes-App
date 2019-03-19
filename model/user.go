@@ -7,38 +7,38 @@ import (
 
 // The User holds
 type User struct {
-	ID       primitive.ObjectID `bson:"_id"`
-	Name     string             `bson:"name"`
-	UserName string             `bson:"username"`
-	Email    string             `bson:"email"`
-	Address  UserAddress        `bson:"address"`
-	Phone    string             `bson:"phone"`
-	Website  string             `bson:"website"`
-	Company  UserCompany        `bson:"company"`
-	Created  time.Time          `bson:"created"`
-	Updated  time.Time          `bson:"updated"`
+	ID       primitive.ObjectID `bson:"_id" json:"_id"`
+	Name     string             `bson:"name" json:"name"`
+	UserName string             `bson:"username" json:"username"`
+	Email    string             `bson:"email" json:"email"`
+	Address  UserAddress        `bson:"address" json:"address"`
+	Phone    string             `bson:"phone" json:"phone"`
+	Website  string             `bson:"website" json:"website"`
+	Company  UserCompany        `bson:"company" json:"company"`
+	Created  time.Time          `bson:"created" json:"created"`
+	Updated  time.Time          `bson:"updated" json:"updated"`
 }
 
 // The UserAddress holds
 type UserAddress struct {
-	Street  string         `bson:"street"`
-	Suite   string         `bson:"suite"`
-	City    string         `bson:"city"`
-	Zipcode string         `bson:"zipcode"`
-	Geo     UserAddressGeo `bson:"geo"`
+	Street  string         `bson:"street" json:"street"`
+	Suite   string         `bson:"suite" json:"suite"`
+	City    string         `bson:"city" json:"city"`
+	Zipcode string         `bson:"zipcode" json:"zipcode"`
+	Geo     UserAddressGeo `bson:"geo" json:"geo"`
 }
 
 // The UserAddressGeo holds
 type UserAddressGeo struct {
-	Lat string `bson:"lat"`
-	Lng string `bson:"lng"`
+	Lat string `bson:"lat" json:"lat"`
+	Lng string `bson:"lng" json:"lng"`
 }
 
 // The UserCompany holds
 type UserCompany struct {
-	Name        string `bson:"name"`
-	CatchPhrase string `bson:"catchPhrase"`
-	BS          string `bson:"bs"`
+	Name        string `bson:"name" json:"name"`
+	CatchPhrase string `bson:"catchPhrase" json:"catchPhrase"`
+	BS          string `bson:"bs" json:"bs"`
 }
 
 // New is
