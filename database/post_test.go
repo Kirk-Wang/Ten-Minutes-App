@@ -5,7 +5,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func (s *DatabaseSuite) TestUser() {
+func (s *DatabaseSuite) TestPost() {
 	s.db.DB.Collection("posts").Drop(nil)
 
 	article := (&model.Post{}).new()
