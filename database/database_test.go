@@ -55,10 +55,15 @@ func (s *DatabaseSuite) TestUser() {
 	}).New()
 	err := s.db.CreateUser(kirk)
 	assert.Nil(s.T(), err)
-	assert.Equal(s.T(), kirk, s.db.GetUserByName("Leanne Graham"))
 
 	users := s.db.GetUsers(&model.Paging{})
 	assert.Len(s.T(), users, 1)
+}
+
+func (s *DatabaseSuite) TestGetUserByID() {
+	id, _ := primitive.ObjectIDFromHex("5c8f9a83da2c3fed4eee9dc1")
+	user := s.db.GetUserByID(id)
+	assert.Equal(s.T(), "User1", user.Name)
 }
 
 func (s *DatabaseSuite) TestPost() {
