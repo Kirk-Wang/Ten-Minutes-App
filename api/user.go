@@ -1,6 +1,7 @@
 package api
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/lotteryjs/ten-minutes-api/model"
 	"strconv"
@@ -16,6 +17,17 @@ type UserDatabase interface {
 // The UserAPI provides handlers for managing users.
 type UserAPI struct {
 	DB UserDatabase
+}
+
+// GetUserByID returns the user by id
+func (a *UserAPI) GetUserByID(ctx *gin.Context) {
+	withID(ctx, "id", func(id uint) {
+		if user := a.DB.GetUserByID(uint(id)); user != nil {
+			ctx.JSON(200, toExternalUser(user))
+		} else {
+			ctx.AbortWithError(404, errors.New("user does not exist"))
+		}
+	})
 }
 
 // GetUsers returns all the users
