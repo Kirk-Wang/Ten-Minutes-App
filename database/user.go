@@ -60,7 +60,7 @@ func (d *TenDatabase) GetUserByName(name string) *model.User {
 func (d *TenDatabase) GetUserByID(id primitive.ObjectID) *model.User {
 	var user *model.User
 	err := d.DB.Collection("users").
-		FindOne(nil, bson.D{{Key: "name", Value: name}}).
+		FindOne(nil, bson.D{{Key: "_id", Value: id}}).
 		Decode(&user)
 	if err != nil {
 		return nil
