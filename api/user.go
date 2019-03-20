@@ -65,8 +65,3 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 	ctx.Header("X-Total-Count", strconv.Itoa(len(users)))
 	ctx.JSON(200, users)
 }
-
-// GetUserByID returns the user by id
-func (a *UserAPI) GetUserByID(ctx *gin.Context) {
-
-}
