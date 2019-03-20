@@ -24,7 +24,8 @@ type UserAPI struct {
 func (a *UserAPI) GetUserByID(ctx *gin.Context) {
 	withID(ctx, "id", func(id primitive.ObjectID) {
 		if user := a.DB.GetUserByID(id); user != nil {
-			ctx.JSON(200, user)
+			users := &[]*model.User{user}
+			ctx.JSON(200, users)
 		} else {
 			ctx.AbortWithError(404, errors.New("user does not exist"))
 		}
