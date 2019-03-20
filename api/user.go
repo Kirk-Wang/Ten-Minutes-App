@@ -8,6 +8,7 @@ import (
 
 // The UserDatabase interface for encapsulating database access.
 type UserDatabase interface {
+	GetUserByID(id string) *model.User
 	CreateUser(user *model.User) error
 	GetUsers(paging *model.Paging) []*model.User
 }
@@ -50,4 +51,9 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 
 	ctx.Header("X-Total-Count", strconv.Itoa(len(users)))
 	ctx.JSON(200, users)
+}
+
+// GetUserByID returns the user by id
+func (a *UserAPI) GetUserByID(ctx *gin.Context) {
+
 }
