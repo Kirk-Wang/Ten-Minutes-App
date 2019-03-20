@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 
 	"github.com/lotteryjs/ten-minutes-api/api"
 	"github.com/lotteryjs/ten-minutes-api/config"
@@ -23,6 +24,9 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 		ctx.Header("Content-Type", "application/json")
 		for header, value := range conf.Server.ResponseHeaders {
 			ctx.Header(header, value)
+		}
+		if ctx.Request.Method == "OPTIONS" {
+			ctx.AbortWithStatus(http.StatusNoContent)
 		}
 	})
 

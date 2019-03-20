@@ -5,8 +5,11 @@ server:
   port: 6868 # the port the HTTP server will listen on
   
   responseheaders: # response headers are added to every response (default: none)
-    Access-Control-Allow-Origin: "*"
-    Access-Control-Allow-Methods: "GET,POST,PUT,DELETE,OPTIONS"
+    Access-Control-Allow-Credentials: "true"
+    Access-Control-Allow-Headers: "content-type"
+    Access-Control-Allow-Methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
+    Access-Control-Allow-Origin: "http://dev.admin.com:3000"
+    Access-Control-Expose-Headers: "X-Total-Count"
 
 database: # for database see (configure database section)
   dbname: tenapi
