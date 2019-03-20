@@ -6,7 +6,7 @@ server:
   
   responseheaders: # response headers are added to every response (default: none)
     Access-Control-Allow-Origin: "*"
-    Access-Control-Allow-Methods: "GET,POST,PUT,DELETE"
+    Access-Control-Allow-Methods: "GET,POST,PUT,DELETE,OPTIONS"
 
 database: # for database see (configure database section)
   dbname: tenapi
