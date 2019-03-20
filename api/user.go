@@ -39,8 +39,13 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 		end   int64
 		sort  string
 		order int
+		id    string
 	)
-
+	id = ctx.DefaultQuery("id", "")
+	if id != "" {
+		a.GetUserByID(ctx)
+		return
+	}
 	start, _ = strconv.ParseInt(ctx.DefaultQuery("_start", "0"), 10, 64)
 	end, _ = strconv.ParseInt(ctx.DefaultQuery("_end", "10"), 10, 64)
 	sort = ctx.DefaultQuery("_sort", "_id")
