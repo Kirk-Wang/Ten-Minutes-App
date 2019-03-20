@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/lotteryjs/ten-minutes-api/model"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -45,6 +46,18 @@ func (d *TenDatabase) CreateUser(user *model.User) error {
 
 // GetUserByName returns the user by the given name or nil.
 func (d *TenDatabase) GetUserByName(name string) *model.User {
+	var user *model.User
+	err := d.DB.Collection("users").
+		FindOne(nil, bson.D{{Key: "name", Value: name}}).
+		Decode(&user)
+	if err != nil {
+		return nil
+	}
+	return user
+}
+
+// GetUserByID returns the user by the given id or nil.
+func (d *TenDatabase) GetUserByID(id primitive.ObjectID) *model.User {
 	var user *model.User
 	err := d.DB.Collection("users").
 		FindOne(nil, bson.D{{Key: "name", Value: name}}).
