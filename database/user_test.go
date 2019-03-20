@@ -34,6 +34,6 @@ func (s *DatabaseSuite) TestUser() {
 	assert.Nil(s.T(), err)
 	assert.Equal(s.T(), kirk, s.db.GetUserByName("Leanne Graham"))
 
-	users := s.db.GetUsers()
+	users := s.db.GetUsers(&model.Paging{})
 	assert.Len(s.T(), users, 1)
 }
