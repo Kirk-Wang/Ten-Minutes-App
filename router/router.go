@@ -18,8 +18,6 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 	g.Use(gin.Logger(), gin.Recovery(), error.Handler())
 	g.NoRoute(error.NotFound())
 
-	userHandler := api.UserAPI{DB: db}
-
 	g.Use(func(ctx *gin.Context) {
 		ctx.Header("Content-Type", "application/json")
 		for header, value := range conf.Server.ResponseHeaders {
@@ -30,10 +28,11 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 		}
 	})
 
-	authAdmin := g.Group("/users")
-	{
-		authAdmin.GET("", userHandler.GetUsers)
-	}
+	userHandler := api.UserAPI{DB: db}
+	postHandler := api.PostAPI{DB: db}
+
+	g.GET("/users", userHandler.GetUsers)
+	g.GET("/posts", postHandler.GetPosts)
 
 	g.GET("version", func(ctx *gin.Context) {
 		ctx.JSON(200, vInfo)
