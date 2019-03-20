@@ -26,7 +26,7 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 		}
 	})
 
-	authAdmin := g.Group("/user")
+	authAdmin := g.Group("/users")
 	{
 		authAdmin.GET("", userHandler.GetUsers)
 	}
