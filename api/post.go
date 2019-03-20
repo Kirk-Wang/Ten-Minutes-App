@@ -6,19 +6,19 @@ import (
 	"strconv"
 )
 
-// The UserDatabase interface for encapsulating database access.
-type UserDatabase interface {
-	GetUsers(paging *model.Paging) []*model.User
+// The PostDatabase interface for encapsulating database access.
+type PostDatabase interface {
+	GetPosts(paging *model.Paging) []*model.Post
 }
 
-// The UserAPI provides handlers for managing users.
-type UserAPI struct {
-	DB UserDatabase
+// The PostAPI provides handlers for managing users.
+type PostAPI struct {
+	DB PostDatabase
 }
 
-// GetUsers returns all the users
+// GetPosts returns all the users
 // _end=5&_order=DESC&_sort=id&_start=0 adapt react-admin
-func (a *UserAPI) GetUsers(ctx *gin.Context) {
+func (a *PostAPI) GetPosts(ctx *gin.Context) {
 	var (
 		start int64
 		end   int64
@@ -39,7 +39,7 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 		order = -1
 	}
 
-	users := a.DB.GetUsers(
+	users := a.DB.GetPosts(
 		&model.Paging{
 			Skip:    &start,
 			Limit:   &end,
