@@ -10,7 +10,7 @@ import (
 
 // The UserDatabase interface for encapsulating database access.
 type UserDatabase interface {
-	GetUserByID(id string) *model.User
+	GetUserByID(id primitive.ObjectID) *model.User
 	CreateUser(user *model.User) error
 	GetUsers(paging *model.Paging) []*model.User
 }
