@@ -86,11 +86,12 @@ func (a *PostAPI) GetPostByID(ctx *gin.Context) {
 func (a *PostAPI) UpdatePostByID(ctx *gin.Context) {
 	withID(ctx, "id", func(id primitive.ObjectID) {
 		var post = model.Post{}
+		abort := errors.New("post does not exist")
 		if err := ctx.ShouldBind(&post); err == nil {
 			if result := a.DB.UpdatePost(&post); result != nil {
 				ctx.JSON(200, result)
 			} else {
-				ctx.AbortWithError(404, errors.New("post does not exist"))
+				ctx.AbortWithError(404, abort)
 			}
 		} else {
 			ctx.AbortWithError(404, errors.New("post does not exist"))
