@@ -2,7 +2,6 @@ package api
 
 import (
 	"errors"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/lotteryjs/ten-minutes-api/model"
 	"go.mongodb.org/mongo-driver/bson/primitive"
