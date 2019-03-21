@@ -65,9 +65,17 @@ func (a *PostAPI) GetPostByID(ctx *gin.Context) {
 	})
 }
 
+// UpdatePostByID is
 func (a *PostAPI) UpdatePostByID(ctx *gin.Context) {
 	// withID(ctx, "id", func(id primitive.ObjectID) {
 
 	// }
 
+	var post = model.Post{}
+
+	if err := ctx.ShouldBind(&post); err != nil {
+		ctx.JSON(200, post)
+	} else {
+		ctx.AbortWithError(404, errors.New("post does not exist"))
+	}
 }
