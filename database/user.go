@@ -49,7 +49,7 @@ func (d *TenDatabase) CreateUser(user *model.User) error {
 func (d *TenDatabase) GetUserByName(name string) *model.User {
 	var user *model.User
 	err := d.DB.Collection("users").
-		FindOne(nil, bson.D{{Key: "name", Value: name}}).
+		FindOne(context.Background(), bson.D{{Key: "name", Value: name}}).
 		Decode(&user)
 	if err != nil {
 		return nil
