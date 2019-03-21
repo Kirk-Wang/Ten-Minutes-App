@@ -102,3 +102,7 @@ func (s *DatabaseSuite) TestUpdatePost() {
 
 	assert.Equal(s.T(), post, s.db.UpdatePost(post))
 }
+
+func (s *DatabaseSuite) TestCountPost() {
+	assert.Equal(s.T(), 50, s.db.CountPost())
+}

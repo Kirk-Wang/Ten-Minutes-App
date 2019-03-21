@@ -81,7 +81,7 @@ func (d *TenDatabase) UpdatePost(post *model.Post) *model.Post {
 
 // CountPost returns the user count
 func (d *TenDatabase) CountPost() int {
-	total, err := d.DB.Collection("posts").CountDocuments(nil, nil, nil)
+	total, err := d.DB.Collection("posts").CountDocuments(nil, bson.D{{}}, nil)
 	if err != nil {
 		return 0
 	}
