@@ -62,9 +62,13 @@ func (d *TenDatabase) UpdatePost(post *model.Post) *model.Post {
 		FindOneAndUpdate(nil,
 			bson.D{{Key: "_id", Value: post.ID}},
 			bson.D{
-				{Key: "$userId", Value: post.UserID},
-				{Key: "$title", Value: post.Title},
-				{Key: "$body", Value: post.Body},
+				{
+					Key: "$set", Value: bson.D{
+						{Key: "userId", Value: post.UserID},
+						{Key: "title", Value: post.Title},
+						{Key: "body", Value: post.Body},
+					},
+				},
 			},
 			&options.FindOneAndUpdateOptions{},
 		)
