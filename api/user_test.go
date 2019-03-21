@@ -38,7 +38,7 @@ func (s *UserSuite) AfterTest(suiteName, testName string) {
 func (s *UserSuite) Test_GetUsers() {
 	s.db.TenDatabase.DB.Collection("users").Drop(nil)
 
-	for i := 1; i <= 100; i++ {
+	for i := 1; i <= 20; i++ {
 		s.db.NewUser(fmt.Sprintf("User%d", i))
 	}
 	s.a.GetUsers(s.ctx)

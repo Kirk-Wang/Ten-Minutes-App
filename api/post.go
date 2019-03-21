@@ -25,8 +25,8 @@ type PostAPI struct {
 func (a *PostAPI) CreatePost(ctx *gin.Context) {
 	var post = model.Post{}
 	if err := ctx.ShouldBind(&post); err == nil {
-		if result := a.DB.CreatePost(&post); result != nil {
-			ctx.JSON(200, result)
+		if result := a.DB.CreatePost(post.New()); result != nil {
+			ctx.JSON(201, result)
 		} else {
 			ctx.AbortWithError(500, errors.New("CreatePost error"))
 		}

@@ -70,15 +70,15 @@ func (s *DatabaseSuite) TestPost() {
 	s.db.DB.Collection("posts").Drop(nil)
 
 	var err error
-	for i := 1; i <= 30; i++ {
+	for i := 1; i <= 50; i++ {
 		// user1
-		UserID, _ := primitive.ObjectIDFromHex("5c8f9a83da2c3fed4eee9dc1")
+		UserID, _ := primitive.ObjectIDFromHex("5c933ae7a49cac27417def6f")
 		article := (&model.Post{
 			UserID: UserID,
 			Title:  fmt.Sprintf("tile%d", i),
 			Body:   "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
 		}).New()
-		err = s.db.CreatePost(article)
+		s.db.CreatePost(article)
 	}
 	assert.Nil(s.T(), err)
 }
