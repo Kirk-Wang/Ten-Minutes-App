@@ -3,11 +3,20 @@
 GET http://jsonplaceholder.typicode.com/users?_end=5&_order=DESC&_sort=id&_start=0
 
 
-### ten-minutes-api 分页获取用户列表
+### local 分页获取用户列表
 GET http://localhost:6868/users?_end=5&_order=DESC&_sort=id&_start=0
 
-### ten-minutes-api 获取用户，ID 不正确
+### local 获取用户，ID 不正确
 GET http://localhost:6868/users?id=11
 
-### ten-minutes-api 获取用户，ID 正确
+### local 获取用户，ID 正确
 GET http://localhost:6868/users?id=5c8f9a83da2c3fed4eee9dc1
+
+### local 分页获取文章列表
+GET http://localhost:6868/posts?_end=5&_order=DESC&_sort=id&_start=0
+
+### local 获取文章，ID 不正确
+GET http://localhost:6868/posts/11
+
+### local 获取文章，ID 正确
+GET http://localhost:6868/posts/5c8f9a83da2c3fed4eee9dc1
