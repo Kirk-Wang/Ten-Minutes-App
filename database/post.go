@@ -44,14 +44,32 @@ func (d *TenDatabase) CreatePost(post *model.Post) error {
 	return nil
 }
 
-// GetPostByID returns the user by the given id or nil.
+// GetPostByID returns the post by the given id or nil.
 func (d *TenDatabase) GetPostByID(id primitive.ObjectID) *model.Post {
-	var user *model.Post
+	var post *model.Post
 	err := d.DB.Collection("posts").
 		FindOne(nil, bson.D{{Key: "_id", Value: id}}).
-		Decode(&user)
+		Decode(&post)
 	if err != nil {
 		return nil
 	}
-	return user
+	return post
+}
+
+// UpdatePostByID updates a post.
+func (d *TenDatabase) UpdatePostByID(post *model.Post) *model.Post {
+	result := d.DB.Collection("posts").
+		FindOneAndUpdate(nil,
+			bson.D{{Key: "_id", Value: post.ID}},
+			bson.D{
+				{Key: "postId", Value: post.UserID},
+				{Key: "title", Value: post.Title},
+				{Key: "body", Value: post.Body},
+			},
+			&options.FindOneAndUpdateOptions{},
+		)
+	if result != nil {
+		return post
+	}
+	return nil
 }
