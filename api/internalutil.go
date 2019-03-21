@@ -8,13 +8,27 @@ import (
 )
 
 func withID(ctx *gin.Context, name string, f func(id primitive.ObjectID)) {
-	value := ctx.DefaultQuery(name, "")
-	if value == "" {
-		value = ctx.Param(name)
-	}
-	if id, err := primitive.ObjectIDFromHex(value); err == nil {
+	if id, err := primitive.ObjectIDFromHex(ctx.Param(name)); err == nil {
 		f(id)
 	} else {
 		ctx.AbortWithError(400, errors.New("invalid id"))
+	}
+}
+
+func withIDs(ctx *gin.Context, name string, f func(id []primitive.ObjectID)) {
+	ids, b := ctx.GetQueryArray(name)
+	var objectIds []primitive.ObjectID
+	abort := errors.New("invalid id")
+	if b {
+		for index, id := range ids {
+			if objID, err := primitive.ObjectIDFromHex(id); err == nil {
+				objectIds[index] = objID
+			} else {
+				ctx.AbortWithError(400, abort)
+			}
+		}
+		f(objectIds)
+	} else {
+		ctx.AbortWithError(400, abort)
 	}
 }
