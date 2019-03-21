@@ -21,6 +21,20 @@ type PostAPI struct {
 	DB PostDatabase
 }
 
+// CreatePost creates a post.
+func (a *PostAPI) CreatePost(ctx *gin.Context) {
+	var post = model.Post{}
+	if err := ctx.ShouldBind(&post); err == nil {
+		if result := a.DB.CreatePost(&post); result != nil {
+			ctx.JSON(200, result)
+		} else {
+			ctx.AbortWithError(500, errors.New("CreatePost error"))
+		}
+	} else {
+		ctx.AbortWithError(500, errors.New("ShouldBind error"))
+	}
+}
+
 // GetPosts returns all the posts
 // _end=5&_order=DESC&_sort=id&_start=0 adapt react-admin
 func (a *PostAPI) GetPosts(ctx *gin.Context) {

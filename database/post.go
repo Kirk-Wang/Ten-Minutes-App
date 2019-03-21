@@ -36,12 +36,21 @@ func (d *TenDatabase) GetPosts(paging *model.Paging) []*model.Post {
 }
 
 // CreatePost creates a post.
-func (d *TenDatabase) CreatePost(post *model.Post) (*model.Post, error) {
-	if _, err := d.DB.Collection("posts").
-		InsertOne(context.Background(), post); err != nil {
-		return nil, err
+func (d *TenDatabase) CreatePost(post *model.Post) *model.Post {
+	// Specifies the order in which to return results.
+	upsert := true
+	result := d.DB.Collection("posts").
+		FindOneAndReplace(nil,
+			bson.D{{Key: "_id", Value: post.ID}},
+			post,
+			&options.FindOneAndReplaceOptions{
+				Upsert: &upsert,
+			},
+		)
+	if result != nil {
+		return post
 	}
-	return post, nil
+	return nil
 }
 
 // GetPostByID returns the post by the given id or nil.
