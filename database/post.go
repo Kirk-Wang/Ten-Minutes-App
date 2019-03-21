@@ -41,7 +41,7 @@ func (d *TenDatabase) CreatePost(post *model.Post) *model.Post {
 	// Specifies the order in which to return results.
 	upsert := true
 	result := d.DB.Collection("posts").
-		FindOneAndReplace(nil,
+		FindOneAndReplace(context.Background(),
 			bson.D{{Key: "_id", Value: post.ID}},
 			post,
 			&options.FindOneAndReplaceOptions{
