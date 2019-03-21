@@ -10,7 +10,7 @@ GET http://localhost:6868/users?_end=5&_order=DESC&_sort=id&_start=0
 GET http://localhost:6868/users?id=11
 
 ### local 获取用户，ID 正确
-GET http://localhost:6868/users?id=5c8f9a83da2c3fed4eee9dc1&id=5c8f9a83da2c3fed4eee9dc1
+GET http://localhost:6868/users?id=5c933ae7a49cac27417def6f&id=5c933ae7a49cac27417def70
 
 ### local 分页获取文章列表
 GET http://localhost:6868/posts?_end=5&_order=DESC&_sort=id&_start=0
