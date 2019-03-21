@@ -14,6 +14,7 @@ type PostDatabase interface {
 	GetPostByID(id primitive.ObjectID) *model.Post
 	CreatePost(post *model.Post) *model.Post
 	UpdatePost(post *model.Post) *model.Post
+	CountPost() int
 }
 
 // The PostAPI provides handlers for managing posts.
