@@ -58,8 +58,7 @@ func (a *PostAPI) GetPosts(ctx *gin.Context) {
 func (a *PostAPI) GetPostByID(ctx *gin.Context) {
 	withID(ctx, "id", func(id primitive.ObjectID) {
 		if post := a.DB.GetPostByID(id); post != nil {
-			posts := &[]*model.Post{post}
-			ctx.JSON(200, posts)
+			ctx.JSON(200, post)
 		} else {
 			ctx.AbortWithError(404, errors.New("post does not exist"))
 		}
