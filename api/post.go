@@ -14,7 +14,7 @@ type PostDatabase interface {
 	GetPostByID(id primitive.ObjectID) *model.Post
 	CreatePost(post *model.Post) *model.Post
 	UpdatePost(post *model.Post) *model.Post
-	CountPost() int
+	CountPost() string
 }
 
 // The PostAPI provides handlers for managing posts.
@@ -67,7 +67,7 @@ func (a *PostAPI) GetPosts(ctx *gin.Context) {
 			SortVal: order,
 		})
 
-	ctx.Header("X-Total-Count", strconv.Itoa(len(posts)))
+	ctx.Header("X-Total-Count", a.DB.CountPost())
 	ctx.JSON(200, posts)
 }
 

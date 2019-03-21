@@ -6,6 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"strconv"
 )
 
 // GetPosts returns all posts.
@@ -79,11 +80,11 @@ func (d *TenDatabase) UpdatePost(post *model.Post) *model.Post {
 	return nil
 }
 
-// CountPost returns the user count
-func (d *TenDatabase) CountPost() int {
+// CountPost returns the post count
+func (d *TenDatabase) CountPost() string {
 	total, err := d.DB.Collection("posts").CountDocuments(nil, bson.D{{}}, nil)
 	if err != nil {
-		return 0
+		return "0"
 	}
-	return int(total)
+	return strconv.Itoa(int(total))
 }
