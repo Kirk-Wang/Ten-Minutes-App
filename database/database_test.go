@@ -88,3 +88,17 @@ func (s *DatabaseSuite) TestGetPostByID() {
 	post := s.db.GetPostByID(id)
 	assert.Equal(s.T(), "tile1", post.Title)
 }
+
+func (s *DatabaseSuite) TestUpdatePost() {
+	id, _ := primitive.ObjectIDFromHex("5c92e6199929adef73bceea1")
+	userID, _ := primitive.ObjectIDFromHex("5c8f9a83da2c3fed4eee9dc1")
+
+	post := &model.Post{
+		ID:     id,
+		UserID: userID,
+		Title:  "title1",
+		Body:   "title1body",
+	}
+
+	assert.Equal(s.T(), post, s.db.UpdatePost(post))
+}
