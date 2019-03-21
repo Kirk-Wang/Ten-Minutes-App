@@ -84,7 +84,7 @@ func (s *DatabaseSuite) TestPost() {
 }
 
 func (s *DatabaseSuite) TestGetPostByID() {
-	id, _ := primitive.ObjectIDFromHex("5c8f9a83da2c3fed4eee9dc1")
-	user := s.db.GetUserByID(id)
-	assert.Equal(s.T(), "User1", user.Name)
+	id, _ := primitive.ObjectIDFromHex("5c92e6199929adef73bceea1")
+	post := s.db.GetPostByID(id)
+	assert.Equal(s.T(), "tile1", post.Title)
 }
