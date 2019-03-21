@@ -9,7 +9,7 @@ import (
 
 // The UserDatabase interface for encapsulating database access.
 type UserDatabase interface {
-	GetUserByID(id primitive.ObjectID) *model.User
+	GetUserByIDs(ids []primitive.ObjectID) []*model.User
 	CreateUser(user *model.User) error
 	GetUsers(paging *model.Paging) []*model.User
 	CountUser() string
@@ -20,16 +20,10 @@ type UserAPI struct {
 	DB UserDatabase
 }
 
-// GetUserByID returns the user by id
-func (a *UserAPI) GetUserByID(ctx *gin.Context) {
+// GetUserByIDs returns the user by id
+func (a *UserAPI) GetUserByIDs(ctx *gin.Context) {
 	withIDs(ctx, "id", func(ids []primitive.ObjectID) {
-		ctx.JSON(200, ids)
-		// if user := a.DB.GetUserByID(id); user != nil {
-		// 	users := &[]*model.User{user}
-		// 	ctx.JSON(200, users)
-		// } else {
-		// 	ctx.AbortWithError(404, errors.New("user does not exist"))
-		// }
+		ctx.JSON(200, a.DB.GetUserByIDs(ids))
 	})
 }
 
@@ -44,7 +38,7 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 	)
 	id := ctx.DefaultQuery("id", "")
 	if id != "" {
-		a.GetUserByID(ctx)
+		a.GetUserByIDs(ctx)
 		return
 	}
 	start, _ = strconv.ParseInt(ctx.DefaultQuery("_start", "0"), 10, 64)
