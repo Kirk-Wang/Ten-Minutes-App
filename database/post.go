@@ -58,7 +58,7 @@ func (d *TenDatabase) CreatePost(post *model.Post) *model.Post {
 func (d *TenDatabase) GetPostByID(id primitive.ObjectID) *model.Post {
 	var post *model.Post
 	err := d.DB.Collection("posts").
-		FindOne(nil, bson.D{{Key: "_id", Value: id}}).
+		FindOne(context.Background(), bson.D{{Key: "_id", Value: id}}).
 		Decode(&post)
 	if err != nil {
 		return nil
