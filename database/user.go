@@ -86,7 +86,7 @@ func (d *TenDatabase) GetUserByIDs(ids []primitive.ObjectID) []*model.User {
 
 // CountUser returns the user count
 func (d *TenDatabase) CountUser() string {
-	total, err := d.DB.Collection("users").CountDocuments(nil, bson.D{{}}, nil)
+	total, err := d.DB.Collection("users").CountDocuments(context.Background(), bson.D{{}}, nil)
 	if err != nil {
 		return "0"
 	}
