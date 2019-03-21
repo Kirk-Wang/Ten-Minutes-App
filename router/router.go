@@ -36,6 +36,7 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 	postG := g.Group("/posts")
 	{
 		postG.GET("", postHandler.GetPosts)
+		postG.POST("", postHandler.CreatePost)
 		postG.GET(":id", postHandler.GetPostByID)
 		postG.PUT(":id", postHandler.UpdatePostByID)
 	}
