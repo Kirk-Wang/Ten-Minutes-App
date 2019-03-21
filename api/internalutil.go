@@ -8,7 +8,11 @@ import (
 )
 
 func withID(ctx *gin.Context, name string, f func(id primitive.ObjectID)) {
-	if id, err := primitive.ObjectIDFromHex(ctx.Query(name)); err == nil {
+	value := ctx.Query(name)
+	if ctx.Param(name) != "" {
+		value = ctx.Param(name)
+	}
+	if id, err := primitive.ObjectIDFromHex(value); err == nil {
 		f(id)
 	} else {
 		ctx.AbortWithError(400, errors.New("invalid id"))
