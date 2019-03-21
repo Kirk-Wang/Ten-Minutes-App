@@ -60,10 +60,13 @@ func (s *DatabaseSuite) TestUser() {
 	assert.Len(s.T(), users, 1)
 }
 
-func (s *DatabaseSuite) TestGetUserByID() {
-	id, _ := primitive.ObjectIDFromHex("5c8f9a83da2c3fed4eee9dc1")
-	user := s.db.GetUserByID(id)
-	assert.Equal(s.T(), "User1", user.Name)
+func (s *DatabaseSuite) TestGetUserByIDs() {
+	id1, _ := primitive.ObjectIDFromHex("5c933ae7a49cac27417def6f")
+	id2, _ := primitive.ObjectIDFromHex("5c933ae7a49cac27417def70")
+
+	ids := []primitive.ObjectID{id1, id2}
+	users := s.db.GetUserByIDs(ids)
+	assert.Equal(s.T(), 2, len(users))
 }
 
 func (s *DatabaseSuite) TestPost() {

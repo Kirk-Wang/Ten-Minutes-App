@@ -57,16 +57,30 @@ func (d *TenDatabase) GetUserByName(name string) *model.User {
 	return user
 }
 
-// GetUserByID returns the user by the given id or nil.
-func (d *TenDatabase) GetUserByID(id primitive.ObjectID) *model.User {
-	var user *model.User
-	err := d.DB.Collection("users").
-		FindOne(nil, bson.D{{Key: "_id", Value: id}}).
-		Decode(&user)
+// GetUserByIDs returns the user by the given id or nil.
+func (d *TenDatabase) GetUserByIDs(ids []primitive.ObjectID) []*model.User {
+	var users []*model.User
+	cursor, err := d.DB.Collection("users").
+		Find(nil, bson.D{
+			{
+				Key:   "$in",
+				Value: bson.A{ids[0]},
+			},
+		})
 	if err != nil {
 		return nil
 	}
-	return user
+	defer cursor.Close(context.Background())
+
+	for cursor.Next(context.Background()) {
+		user := &model.User{}
+		if err := cursor.Decode(user); err != nil {
+			return nil
+		}
+		users = append(users, user)
+	}
+
+	return users
 }
 
 // CountUser returns the user count
