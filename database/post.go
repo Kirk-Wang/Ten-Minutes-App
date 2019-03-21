@@ -59,20 +59,11 @@ func (d *TenDatabase) GetPostByID(id primitive.ObjectID) *model.Post {
 // UpdatePost updates a post.
 func (d *TenDatabase) UpdatePost(post *model.Post) *model.Post {
 	result := d.DB.Collection("posts").
-		FindOneAndUpdate(nil,
+		FindOneAndReplace(nil,
 			bson.D{{Key: "_id", Value: post.ID}},
-			bson.D{
-				{
-					Key: "$set", Value: bson.D{
-						{Key: "userId", Value: post.UserID},
-						{Key: "title", Value: post.Title},
-						{Key: "body", Value: post.Body},
-					},
-				},
-			},
-			&options.FindOneAndUpdateOptions{},
+			post,
+			&options.FindOneAndReplaceOptions{},
 		)
-
 	if result != nil {
 		return post
 	}

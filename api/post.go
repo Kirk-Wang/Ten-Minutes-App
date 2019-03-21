@@ -64,3 +64,10 @@ func (a *PostAPI) GetPostByID(ctx *gin.Context) {
 		}
 	})
 }
+
+func (a *PostAPI) UpdatePostByID(ctx *gin.Context) {
+	// withID(ctx, "id", func(id primitive.ObjectID) {
+
+	// }
+
+}

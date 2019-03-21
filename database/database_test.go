@@ -97,7 +97,7 @@ func (s *DatabaseSuite) TestUpdatePost() {
 		ID:     id,
 		UserID: userID,
 		Title:  "title1",
-		Body:   "title1body",
+		Body:   "title1bodytitle1body",
 	}
 
 	assert.Equal(s.T(), post, s.db.UpdatePost(post))
