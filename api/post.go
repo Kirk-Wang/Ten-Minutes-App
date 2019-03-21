@@ -12,6 +12,7 @@ import (
 type PostDatabase interface {
 	GetPosts(paging *model.Paging) []*model.Post
 	GetPostByID(id primitive.ObjectID) *model.Post
+	UpdatePost(post *model.Post) *model.Post
 }
 
 // The PostAPI provides handlers for managing posts.
@@ -67,15 +68,16 @@ func (a *PostAPI) GetPostByID(ctx *gin.Context) {
 
 // UpdatePostByID is
 func (a *PostAPI) UpdatePostByID(ctx *gin.Context) {
-	// withID(ctx, "id", func(id primitive.ObjectID) {
-
-	// }
-
-	var post = model.Post{}
-
-	if err := ctx.ShouldBind(&post); err != nil {
-		ctx.JSON(200, post)
-	} else {
-		ctx.AbortWithError(404, errors.New("post does not exist"))
-	}
+	withID(ctx, "id", func(id primitive.ObjectID) {
+		var post = model.Post{}
+		if err := ctx.ShouldBind(&post); err == nil {
+			if result := a.DB.UpdatePost(&post); result != nil {
+				ctx.JSON(200, result)
+			} else {
+				ctx.AbortWithError(404, errors.New("post does not exist"))
+			}
+		} else {
+			ctx.AbortWithError(404, errors.New("post does not exist"))
+		}
+	})
 }
