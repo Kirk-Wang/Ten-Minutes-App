@@ -1,6 +1,7 @@
 package api
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/lotteryjs/ten-minutes-api/model"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -13,12 +14,12 @@ type PostDatabase interface {
 	GetPostByID(id primitive.ObjectID) *model.Post
 }
 
-// The PostAPI provides handlers for managing users.
+// The PostAPI provides handlers for managing posts.
 type PostAPI struct {
 	DB PostDatabase
 }
 
-// GetPosts returns all the users
+// GetPosts returns all the posts
 // _end=5&_order=DESC&_sort=id&_start=0 adapt react-admin
 func (a *PostAPI) GetPosts(ctx *gin.Context) {
 	var (
@@ -41,7 +42,7 @@ func (a *PostAPI) GetPosts(ctx *gin.Context) {
 		order = -1
 	}
 
-	users := a.DB.GetPosts(
+	posts := a.DB.GetPosts(
 		&model.Paging{
 			Skip:    &start,
 			Limit:   &end,
@@ -49,6 +50,18 @@ func (a *PostAPI) GetPosts(ctx *gin.Context) {
 			SortVal: order,
 		})
 
-	ctx.Header("X-Total-Count", strconv.Itoa(len(users)))
-	ctx.JSON(200, users)
+	ctx.Header("X-Total-Count", strconv.Itoa(len(posts)))
+	ctx.JSON(200, posts)
+}
+
+// GetPostByID returns the post by id
+func (a *PostAPI) GetPostByID(ctx *gin.Context) {
+	withID(ctx, "id", func(id primitive.ObjectID) {
+		if post := a.DB.GetPostByID(id); post != nil {
+			posts := &[]*model.Post{post}
+			ctx.JSON(200, posts)
+		} else {
+			ctx.AbortWithError(404, errors.New("post does not exist"))
+		}
+	})
 }
