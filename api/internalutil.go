@@ -17,12 +17,12 @@ func withID(ctx *gin.Context, name string, f func(id primitive.ObjectID)) {
 
 func withIDs(ctx *gin.Context, name string, f func(id []primitive.ObjectID)) {
 	ids, b := ctx.GetQueryArray(name)
-	var objectIds []primitive.ObjectID
+	objectIds := []primitive.ObjectID{}
 	abort := errors.New("invalid id")
 	if b {
-		for index, id := range ids {
+		for _, id := range ids {
 			if objID, err := primitive.ObjectIDFromHex(id); err == nil {
-				objectIds[index] = objID
+				objectIds = append(objectIds, objID)
 			} else {
 				ctx.AbortWithError(400, abort)
 			}
