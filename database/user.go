@@ -61,7 +61,7 @@ func (d *TenDatabase) GetUserByName(name string) *model.User {
 func (d *TenDatabase) GetUserByIDs(ids []primitive.ObjectID) []*model.User {
 	var users []*model.User
 	cursor, err := d.DB.Collection("users").
-		Find(nil, bson.D{{
+		Find(context.Background(), bson.D{{
 			Key: "_id",
 			Value: bson.D{{
 				Key:   "$in",
