@@ -3,12 +3,14 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/lotteryjs/ten-minutes-api/model"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"strconv"
 )
 
 // The PostDatabase interface for encapsulating database access.
 type PostDatabase interface {
 	GetPosts(paging *model.Paging) []*model.Post
+	GetPostByID(id primitive.ObjectID) *model.Post
 }
 
 // The PostAPI provides handlers for managing users.
