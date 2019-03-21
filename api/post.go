@@ -94,7 +94,7 @@ func (a *PostAPI) UpdatePostByID(ctx *gin.Context) {
 				ctx.AbortWithError(404, abort)
 			}
 		} else {
-			ctx.AbortWithError(404, errors.New("post does not exist"))
+			ctx.AbortWithError(404, abort)
 		}
 	})
 }
