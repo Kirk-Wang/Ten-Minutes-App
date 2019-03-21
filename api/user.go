@@ -13,6 +13,7 @@ type UserDatabase interface {
 	GetUserByID(id primitive.ObjectID) *model.User
 	CreateUser(user *model.User) error
 	GetUsers(paging *model.Paging) []*model.User
+	CountUser() string
 }
 
 // The UserAPI provides handlers for managing users.
@@ -68,6 +69,6 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 			SortVal: order,
 		})
 
-	ctx.Header("X-Total-Count", strconv.Itoa(len(users)))
+	ctx.Header("X-Total-Count", a.DB.CountUser())
 	ctx.JSON(200, users)
 }
