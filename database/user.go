@@ -6,6 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"strconv"
 )
 
 // GetUsers returns all users.
@@ -66,4 +67,13 @@ func (d *TenDatabase) GetUserByID(id primitive.ObjectID) *model.User {
 		return nil
 	}
 	return user
+}
+
+// CountUser returns the user count
+func (d *TenDatabase) CountUser() string {
+	total, err := d.DB.Collection("users").CountDocuments(nil, bson.D{{}}, nil)
+	if err != nil {
+		return "0"
+	}
+	return strconv.Itoa(int(total))
 }
