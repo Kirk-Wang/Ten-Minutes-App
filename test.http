@@ -19,4 +19,4 @@ GET http://localhost:6868/posts?_end=5&_order=DESC&_sort=id&_start=0
 GET http://localhost:6868/posts/11
 
 ### local 获取文章，ID 正确
-GET http://localhost:6868/posts/5c8f9a83da2c3fed4eee9dc1
+GET http://localhost:6868/posts/5c92e6199929adef73bceea1

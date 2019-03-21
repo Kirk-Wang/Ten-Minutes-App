@@ -32,7 +32,12 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 	postHandler := api.PostAPI{DB: db}
 
 	g.GET("/users", userHandler.GetUsers)
-	g.GET("/posts", postHandler.GetPosts)
+
+	postG := g.Group("/posts")
+	{
+		postG.GET("", postHandler.GetPosts)
+		postG.GET(":id", postHandler.GetPostByID)
+	}
 
 	g.GET("version", func(ctx *gin.Context) {
 		ctx.JSON(200, vInfo)
