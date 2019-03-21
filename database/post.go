@@ -36,12 +36,12 @@ func (d *TenDatabase) GetPosts(paging *model.Paging) []*model.Post {
 }
 
 // CreatePost creates a post.
-func (d *TenDatabase) CreatePost(post *model.Post) error {
+func (d *TenDatabase) CreatePost(post *model.Post) (*model.Post, error) {
 	if _, err := d.DB.Collection("posts").
 		InsertOne(context.Background(), post); err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return post, nil
 }
 
 // GetPostByID returns the post by the given id or nil.

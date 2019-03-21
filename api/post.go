@@ -12,6 +12,7 @@ import (
 type PostDatabase interface {
 	GetPosts(paging *model.Paging) []*model.Post
 	GetPostByID(id primitive.ObjectID) *model.Post
+	CreatePost(post *model.Post) *model.Post
 	UpdatePost(post *model.Post) *model.Post
 }
 
