@@ -59,10 +59,11 @@ func (a *PostAPI) GetPosts(ctx *gin.Context) {
 		order = -1
 	}
 
+	limit := end - start
 	posts := a.DB.GetPosts(
 		&model.Paging{
 			Skip:    &start,
-			Limit:   &end,
+			Limit:   &limit,
 			SortKey: sort,
 			SortVal: order,
 		})
