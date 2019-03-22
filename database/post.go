@@ -12,7 +12,7 @@ import (
 // GetPosts returns all posts.
 // start, end int, order, sort string
 func (d *TenDatabase) GetPosts(paging *model.Paging) []*model.Post {
-	var posts []*model.Post
+	posts := []*model.Post{}
 	condition := bson.D{}
 	if paging.Condition != nil {
 		condition = (paging.Condition).(bson.D)

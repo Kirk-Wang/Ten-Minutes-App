@@ -12,7 +12,7 @@ import (
 // GetUsers returns all users.
 // start, end int, order, sort string
 func (d *TenDatabase) GetUsers(paging *model.Paging) []*model.User {
-	var users []*model.User
+	users := []*model.User{}
 	cursor, err := d.DB.Collection("users").
 		Find(context.Background(), bson.D{},
 			&options.FindOptions{
