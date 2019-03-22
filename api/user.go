@@ -54,10 +54,11 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 		order = -1
 	}
 
+	limit := end - start
 	users := a.DB.GetUsers(
 		&model.Paging{
 			Skip:    &start,
-			Limit:   &end,
+			Limit:   &limit,
 			SortKey: sort,
 			SortVal: order,
 		})
