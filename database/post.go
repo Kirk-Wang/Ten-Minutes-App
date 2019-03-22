@@ -13,8 +13,12 @@ import (
 // start, end int, order, sort string
 func (d *TenDatabase) GetPosts(paging *model.Paging) []*model.Post {
 	var posts []*model.Post
+	condition := bson.D{}
+	if paging.Condition != nil {
+		condition = paging.Condition.(bson.D)
+	}
 	cursor, err := d.DB.Collection("posts").
-		Find(context.Background(), bson.D{},
+		Find(context.Background(), condition,
 			&options.FindOptions{
 				Skip:  paging.Skip,
 				Sort:  bson.D{bson.E{Key: paging.SortKey, Value: paging.SortVal}},

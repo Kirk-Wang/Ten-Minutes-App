@@ -4,6 +4,7 @@ import (
 	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/lotteryjs/ten-minutes-api/model"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"strconv"
 )
@@ -40,14 +41,16 @@ func (a *PostAPI) CreatePost(ctx *gin.Context) {
 // _end=5&_order=DESC&_sort=id&_start=0 adapt react-admin
 func (a *PostAPI) GetPosts(ctx *gin.Context) {
 	var (
-		start int64
-		end   int64
-		sort  string
-		order int
+		start  int64
+		end    int64
+		sort   string
+		order  int
+		userID string
 	)
 
 	start, _ = strconv.ParseInt(ctx.DefaultQuery("_start", "0"), 10, 64)
 	end, _ = strconv.ParseInt(ctx.DefaultQuery("_end", "10"), 10, 64)
+	userID = ctx.DefaultQuery("userId", "")
 	sort = ctx.DefaultQuery("_sort", "_id")
 	order = 1
 
@@ -59,13 +62,22 @@ func (a *PostAPI) GetPosts(ctx *gin.Context) {
 		order = -1
 	}
 
+	condition := bson.D{}
+	if userID != "" {
+		condition = bson.D{{
+			Key:   "userId",
+			Value: userID,
+		}}
+	}
+
 	limit := end - start
 	posts := a.DB.GetPosts(
 		&model.Paging{
-			Skip:    &start,
-			Limit:   &limit,
-			SortKey: sort,
-			SortVal: order,
+			Skip:      &start,
+			Limit:     &limit,
+			SortKey:   sort,
+			SortVal:   order,
+			Condition: condition,
 		})
 
 	ctx.Header("X-Total-Count", a.DB.CountPost())
