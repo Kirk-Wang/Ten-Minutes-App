@@ -57,10 +57,11 @@ func (a *UserAPI) GetUsers(ctx *gin.Context) {
 	limit := end - start
 	users := a.DB.GetUsers(
 		&model.Paging{
-			Skip:    &start,
-			Limit:   &limit,
-			SortKey: sort,
-			SortVal: order,
+			Skip:      &start,
+			Limit:     &limit,
+			SortKey:   sort,
+			SortVal:   order,
+			Condition: nil,
 		})
 
 	ctx.Header("X-Total-Count", a.DB.CountUser())

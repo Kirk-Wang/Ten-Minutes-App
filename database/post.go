@@ -15,7 +15,7 @@ func (d *TenDatabase) GetPosts(paging *model.Paging) []*model.Post {
 	var posts []*model.Post
 	condition := bson.D{}
 	if paging.Condition != nil {
-		condition = paging.Condition.(bson.D)
+		condition = (paging.Condition).(bson.D)
 	}
 	cursor, err := d.DB.Collection("posts").
 		Find(context.Background(), condition,

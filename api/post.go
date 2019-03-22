@@ -64,9 +64,10 @@ func (a *PostAPI) GetPosts(ctx *gin.Context) {
 
 	condition := bson.D{}
 	if userID != "" {
+		coditionUserID, _ := primitive.ObjectIDFromHex(userID)
 		condition = bson.D{{
 			Key:   "userId",
-			Value: userID,
+			Value: coditionUserID,
 		}}
 	}
 
