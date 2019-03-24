@@ -5,7 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 
 export default () => (
     <Card>
-        <CardHeader title="haha" />
+        <CardHeader title="快速构建高质量的 React 应用" />
         <CardContent>guys</CardContent>
     </Card>
 );
