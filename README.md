@@ -11,7 +11,7 @@ base on [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github
 &nbsp;&nbsp;
 <img src="https://raw.githubusercontent.com/erikras/redux-form/master/logo.png" width="100">
 &nbsp;&nbsp;
-<img src="https://redux-saga.js.org/logo/0800/Redux-Saga-Logo-Landscape.png" width="100">
+<img src="https://avatars0.githubusercontent.com/u/24776643?s=400&v=4" width="100">
 &nbsp;&nbsp;
 <img src="https://material-ui.com/static/images/material-ui-logo.svg" width="100">
 &nbsp;&nbsp;
