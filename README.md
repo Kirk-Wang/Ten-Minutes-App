@@ -7,6 +7,8 @@ base on [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github
 <p align="center">
 <img src="https://raw.githubusercontent.com/github/explore/6c6508f34230f0ac0d49e847a326429eefbfc030/topics/react/react.png" width="100">
 &nbsp;&nbsp;
+<img src="https://redux.js.org/img/redux.svg" width="100">
+&nbsp;&nbsp;
 <img src="https://material-ui.com/static/images/material-ui-logo.svg" width="100">
 &nbsp;&nbsp;
 <img src="https://github.com/mongodb/mongo-go-driver/raw/master/etc/assets/mongo-gopher.png" width="100">
