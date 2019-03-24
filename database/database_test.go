@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"github.com/lotteryjs/ten-minutes-api/model"
+	"github.com/lotteryjs/ten-minutes-app/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 	"go.mongodb.org/mongo-driver/bson/primitive"

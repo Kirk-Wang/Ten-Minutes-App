@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lotteryjs/ten-minutes-api/mode"
-	"github.com/lotteryjs/ten-minutes-api/test/testdb"
+	"github.com/lotteryjs/ten-minutes-app/mode"
+	"github.com/lotteryjs/ten-minutes-app/test/testdb"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )

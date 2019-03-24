@@ -1,10 +1,10 @@
 package testdb
 
 import (
-	"github.com/lotteryjs/ten-minutes-api/model"
+	"github.com/lotteryjs/ten-minutes-app/model"
 	"testing"
 
-	"github.com/lotteryjs/ten-minutes-api/database"
+	"github.com/lotteryjs/ten-minutes-app/database"
 	"github.com/stretchr/testify/assert"
 )
 

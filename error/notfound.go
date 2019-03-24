@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lotteryjs/ten-minutes-api/model"
+	"github.com/lotteryjs/ten-minutes-app/model"
 )
 
 // NotFound creates a gin middleware for handling page not found.

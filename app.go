@@ -5,12 +5,12 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/lotteryjs/ten-minutes-api/config"
-	"github.com/lotteryjs/ten-minutes-api/database"
-	"github.com/lotteryjs/ten-minutes-api/mode"
-	"github.com/lotteryjs/ten-minutes-api/model"
-	"github.com/lotteryjs/ten-minutes-api/router"
-	"github.com/lotteryjs/ten-minutes-api/runner"
+	"github.com/lotteryjs/ten-minutes-app/config"
+	"github.com/lotteryjs/ten-minutes-app/database"
+	"github.com/lotteryjs/ten-minutes-app/mode"
+	"github.com/lotteryjs/ten-minutes-app/model"
+	"github.com/lotteryjs/ten-minutes-app/router"
+	"github.com/lotteryjs/ten-minutes-app/runner"
 )
 
 var (

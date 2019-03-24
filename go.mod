@@ -1,4 +1,4 @@
-module github.com/lotteryjs/ten-minutes-api
+module github.com/lotteryjs/ten-minutes-app
 
 go 1.12
 

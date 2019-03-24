@@ -4,11 +4,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 
-	"github.com/lotteryjs/ten-minutes-api/api"
-	"github.com/lotteryjs/ten-minutes-api/config"
-	"github.com/lotteryjs/ten-minutes-api/database"
-	"github.com/lotteryjs/ten-minutes-api/error"
-	"github.com/lotteryjs/ten-minutes-api/model"
+	"github.com/lotteryjs/ten-minutes-app/api"
+	"github.com/lotteryjs/ten-minutes-app/config"
+	"github.com/lotteryjs/ten-minutes-app/database"
+	"github.com/lotteryjs/ten-minutes-app/error"
+	"github.com/lotteryjs/ten-minutes-app/model"
 )
 
 // Create creates the gin engine with all routes.

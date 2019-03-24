@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lotteryjs/ten-minutes-api/config"
+	"github.com/lotteryjs/ten-minutes-app/config"
 )
 
 // Run starts the http server
