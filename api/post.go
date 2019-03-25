@@ -6,6 +6,7 @@ import (
 	"github.com/lotteryjs/ten-minutes-app/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"net/http"
 	"strconv"
 )
 
@@ -15,6 +16,7 @@ type PostDatabase interface {
 	GetPostByID(id primitive.ObjectID) *model.Post
 	CreatePost(post *model.Post) *model.Post
 	UpdatePost(post *model.Post) *model.Post
+	DeletePostByID(id primitive.ObjectID) error
 	CountPost() string
 }
 
@@ -90,6 +92,17 @@ func (a *PostAPI) GetPostByID(ctx *gin.Context) {
 	withID(ctx, "id", func(id primitive.ObjectID) {
 		if post := a.DB.GetPostByID(id); post != nil {
 			ctx.JSON(200, post)
+		} else {
+			ctx.AbortWithError(404, errors.New("post does not exist"))
+		}
+	})
+}
+
+// DeletePostByID deletes the user by id
+func (a *PostAPI) DeletePostByID(ctx *gin.Context) {
+	withID(ctx, "id", func(id primitive.ObjectID) {
+		if err := a.DB.DeletePostByID(id); err != nil {
+			ctx.JSON(200, http.StatusOK)
 		} else {
 			ctx.AbortWithError(404, errors.New("post does not exist"))
 		}
