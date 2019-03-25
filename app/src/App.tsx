@@ -7,7 +7,7 @@ import Dashboard from './Dashboard';
 import { PostList, PostEdit, PostCreate } from './Posts';
 import { UserList } from './Users';
 
-const dataProvider = jsonServerProvider("http://dev.admin.com:6868");
+const dataProvider = jsonServerProvider("http://localhost:6868");
 const Title = () => (<div>Golang ❤️ MongoDB ❤️ React</div>)
 
 const App = () => (
