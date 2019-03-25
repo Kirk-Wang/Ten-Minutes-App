@@ -73,9 +73,9 @@ func (s *DatabaseSuite) TestPost() {
 	s.db.DB.Collection("posts").Drop(nil)
 
 	var err error
-	for i := 1; i <= 50; i++ {
+	for i := 1; i <= 25; i++ {
 		// user1
-		UserID, _ := primitive.ObjectIDFromHex("5c938131ca447e20e7b66974")
+		UserID, _ := primitive.ObjectIDFromHex("5c98678fbf0b9c5d8699e587")
 		article := (&model.Post{
 			UserID: UserID,
 			Title:  fmt.Sprintf("tile%d", i),
