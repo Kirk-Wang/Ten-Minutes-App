@@ -35,6 +35,7 @@ base on [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github
 # api
 go run .
 # app
+cd app
 yarn & yarn start
 ```
 
