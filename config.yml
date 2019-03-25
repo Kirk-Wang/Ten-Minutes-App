@@ -8,7 +8,7 @@ server:
     Access-Control-Allow-Credentials: "true"
     Access-Control-Allow-Headers: "content-type"
     Access-Control-Allow-Methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
-    Access-Control-Allow-Origin: "http://dev.admin.com:3000"
+    Access-Control-Allow-Origin: "*"
     Access-Control-Expose-Headers: "X-Total-Count"
 
 database: # for database see (configure database section)
