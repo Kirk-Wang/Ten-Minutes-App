@@ -92,3 +92,9 @@ func (d *TenDatabase) CountUser() string {
 	}
 	return strconv.Itoa(int(total))
 }
+
+// DeleteUserByID deletes a user by its id.
+func (d *TenDatabase) DeleteUserByID(id primitive.ObjectID) error {
+	_, err := d.DB.Collection("users").DeleteOne(context.Background(), bson.D{{Key: "_id", Value: id}})
+	return err
+}
