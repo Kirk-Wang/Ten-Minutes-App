@@ -1,15 +1,18 @@
 package api
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/lotteryjs/ten-minutes-app/model"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"net/http"
 	"strconv"
 )
 
 // The UserDatabase interface for encapsulating database access.
 type UserDatabase interface {
 	GetUserByIDs(ids []primitive.ObjectID) []*model.User
+	DeleteUserByID(id primitive.ObjectID) error
 	CreateUser(user *model.User) error
 	GetUsers(paging *model.Paging) []*model.User
 	CountUser() string
@@ -24,6 +27,17 @@ type UserAPI struct {
 func (a *UserAPI) GetUserByIDs(ctx *gin.Context) {
 	withIDs(ctx, "id", func(ids []primitive.ObjectID) {
 		ctx.JSON(200, a.DB.GetUserByIDs(ids))
+	})
+}
+
+// DeleteUserByID deletes the user by id
+func (a *UserAPI) DeleteUserByID(ctx *gin.Context) {
+	withID(ctx, "id", func(id primitive.ObjectID) {
+		if err := a.DB.DeleteUserByID(id); err == nil {
+			ctx.JSON(200, http.StatusOK)
+		} else {
+			ctx.AbortWithError(404, errors.New("user does not exist"))
+		}
 	})
 }
 
