@@ -10,7 +10,7 @@ import { UserList } from './Users';
 const dataProvider = jsonServerProvider("http://dev.admin.com:6868");
 
 const App = () => (
-  <Admin dashboard={Dashboard} dataProvider={dataProvider}>
+  <Admin title="GoLang ❤️ React" dashboard={Dashboard} dataProvider={dataProvider}>
       <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
       <Resource name="users" list={UserList} icon={UserIcon} />
   </Admin>

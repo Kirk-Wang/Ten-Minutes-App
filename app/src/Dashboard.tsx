@@ -7,8 +7,8 @@ import Avatar from '@material-ui/core/Avatar';
 
 const styles = {
   avatar: {
-    width: 200,
-    height: 200,
+    width: 400,
+    height: 400,
     borderRadius: 0
   },
 };
@@ -20,10 +20,6 @@ export default withStyles(styles)(({ classes }) => (
           <Avatar
             alt="GoLang"
             src="https://cdn-images-1.medium.com/max/1200/1*yh90bW8jL4f8pOTZTvbzqw.png" 
-            className={classes.avatar}/>
-          <Avatar
-            alt="Material-UI"
-            src="https://material-ui.com/static/images/material-ui-logo.svg" 
             className={classes.avatar}/>
         </CardContent>
     </Card>
