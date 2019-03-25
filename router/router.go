@@ -39,6 +39,7 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 		postG.POST("", postHandler.CreatePost)
 		postG.GET(":id", postHandler.GetPostByID)
 		postG.PUT(":id", postHandler.UpdatePostByID)
+		postG.DELETE(":id", postHandler.DeletePostByID)
 	}
 
 	g.GET("version", func(ctx *gin.Context) {
