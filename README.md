@@ -30,6 +30,14 @@ base on [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github
 
 ![ui-post](./ui-post.png)
 
+# Dev
+```sh
+# api
+go run .
+# app
+yarn & yarn start
+```
+
 # Refs
 
 * [mongo-go-dirver offical examples](https://github.com/mongodb/mongo-go-driver/blob/master/examples/documentation_examples/examples.go)
