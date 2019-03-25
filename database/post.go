@@ -70,6 +70,12 @@ func (d *TenDatabase) GetPostByID(id primitive.ObjectID) *model.Post {
 	return post
 }
 
+// DeletePostByID deletes a user by its id.
+func (d *TenDatabase) DeletePostByID(id primitive.ObjectID) error {
+	_, err := d.DB.Collection("posts").DeleteOne(context.Background(), bson.D{{Key: "_id", Value: id}})
+	return err
+}
+
 // UpdatePost updates a post.
 func (d *TenDatabase) UpdatePost(post *model.Post) *model.Post {
 	result := d.DB.Collection("posts").
