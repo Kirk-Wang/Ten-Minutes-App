@@ -26,6 +26,8 @@ base on [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github
 
 ![Schema](./Schema.png)
 
+![ui-dashboard](./ui-dashboard.png)
+
 ![ui-post](./ui-post.png)
 
 # Refs
