@@ -31,7 +31,11 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 	userHandler := api.UserAPI{DB: db}
 	postHandler := api.PostAPI{DB: db}
 
-	g.GET("/users", userHandler.GetUsers)
+	postU := g.Group("/users")
+	{
+		postU.GET("", userHandler.GetUsers)
+		postU.DELETE(":id", userHandler.DeleteUserByID)
+	}
 
 	postG := g.Group("/posts")
 	{
