@@ -101,7 +101,7 @@ func (a *PostAPI) GetPostByID(ctx *gin.Context) {
 // DeletePostByID deletes the user by id
 func (a *PostAPI) DeletePostByID(ctx *gin.Context) {
 	withID(ctx, "id", func(id primitive.ObjectID) {
-		if err := a.DB.DeletePostByID(id); err != nil {
+		if err := a.DB.DeletePostByID(id); err == nil {
 			ctx.JSON(200, http.StatusOK)
 		} else {
 			ctx.AbortWithError(404, errors.New("post does not exist"))
