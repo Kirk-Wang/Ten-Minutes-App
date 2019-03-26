@@ -96,7 +96,7 @@ func (d *TenDatabase) CountUser() string {
 
 // DeleteUserByID deletes a user by its id.
 func (d *TenDatabase) DeleteUserByID(id primitive.ObjectID) error {
-	if d.CountPost() != "0" {
+	if d.CountPost(bson.D{{Key: "userId", Value: id}}) != "0" {
 		_, err := d.DB.Collection("users").DeleteOne(context.Background(), bson.D{{Key: "_id", Value: id}})
 		return err
 	}
