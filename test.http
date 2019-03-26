@@ -13,7 +13,7 @@ GET http://localhost:6868/users?id=11
 GET http://localhost:6868/users?id=5c933ae7a49cac27417def6f&id=5c933ae7a49cac27417def70
 
 ### local 删除用户，ID 正确
-DELETE http://localhost:6868/users/5c98678fbf0b9c5d8699e587
+DELETE http://localhost:6868/users/5c99bd941ba7b2304ad8c52b
 
 ### local 分页获取文章列表
 GET http://localhost:6868/posts?_end=5&_order=DESC&_sort=id&_start=0&userId=5c938131ca447e20e7b66974
