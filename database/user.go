@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"errors"
 	"github.com/lotteryjs/ten-minutes-app/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -95,6 +96,9 @@ func (d *TenDatabase) CountUser() string {
 
 // DeleteUserByID deletes a user by its id.
 func (d *TenDatabase) DeleteUserByID(id primitive.ObjectID) error {
-	_, err := d.DB.Collection("users").DeleteOne(context.Background(), bson.D{{Key: "_id", Value: id}})
-	return err
+	if d.CountPost() != "0" {
+		_, err := d.DB.Collection("users").DeleteOne(context.Background(), bson.D{{Key: "_id", Value: id}})
+		return err
+	}
+	return errors.New("the current user has posts published")
 }
