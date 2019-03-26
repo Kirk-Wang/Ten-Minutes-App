@@ -19,10 +19,9 @@ App 介绍：
 
 <details>
   <summary>
-    <b>基于现有 API，10分钟内快速构建一个完整的应用</b>
+    <b>10分钟内快速构建一个完整的应用</b>
   </summary>
   <ol>
-    <li><a href="https://github.com/lotteryjs/ten-minutes-api" target="_black">ten-minutes-api</a></li>
     <li><a href="http://jsonplaceholder.typicode.com/users">Users</a>：路由导航，用户列表，分页，全选，删除（2s 可撤销删除），导出 CSV 文件，点击表头排序</li>
     <li><a href="http://jsonplaceholder.typicode.com/posts">Posts</a>：路由导航，文章列表，分页，全选，删除（2s 可撤销删除），导出 CSV 文件，点击表头排序</li>
     <li>添加文章（针对某个用户）</li>
