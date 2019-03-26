@@ -25,5 +25,5 @@ GET http://localhost:6868/posts/11
 GET http://localhost:6868/posts/5c92e6199929adef73bceea1
 
 ### local 删除文章，ID 正确
-DELETE http://localhost:6868/posts/5c9390c879b7dcb84412e547
+DELETE http://localhost:6868/posts/5c98678fbf0b9c5d8699e587
 

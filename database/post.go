@@ -91,8 +91,12 @@ func (d *TenDatabase) UpdatePost(post *model.Post) *model.Post {
 }
 
 // CountPost returns the post count
-func (d *TenDatabase) CountPost() string {
-	total, err := d.DB.Collection("posts").CountDocuments(context.Background(), bson.D{{}}, &options.CountOptions{})
+func (d *TenDatabase) CountPost(condition interface{}) string {
+	cd := bson.D{}
+	if condition != nil {
+		cd = (condition).(bson.D)
+	}
+	total, err := d.DB.Collection("posts").CountDocuments(context.Background(), cd, &options.CountOptions{})
 	if err != nil {
 		return "0"
 	}
