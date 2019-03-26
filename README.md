@@ -15,8 +15,6 @@ App 介绍：
 * 使用 [DbSchema](https://www.dbschema.com/)（请支持正版😝） 对数据进行可视化建模
   * [Demo](https://o-o.ren/scaling-redux-apps/visual-data-modeling/2-tutorial/)
 
-实战（为保证真实的CRUD，这里我将基于 [jsonplaceholder](http://jsonplaceholder.typicode.com/posts) 的数据，然后使用 [Gin](https://github.com/gin-gonic/gin) & [MongoDB](https://docs.mongodb.com/manual/) 构建真实的 API）：
-
 <details>
   <summary>
     <b>10分钟内快速构建一个完整的应用</b>
