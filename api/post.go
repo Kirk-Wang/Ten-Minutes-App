@@ -17,7 +17,7 @@ type PostDatabase interface {
 	CreatePost(post *model.Post) *model.Post
 	UpdatePost(post *model.Post) *model.Post
 	DeletePostByID(id primitive.ObjectID) error
-	CountPost() string
+	CountPost(condition interface{}) string
 }
 
 // The PostAPI provides handlers for managing posts.
@@ -83,7 +83,7 @@ func (a *PostAPI) GetPosts(ctx *gin.Context) {
 			Condition: condition,
 		})
 
-	ctx.Header("X-Total-Count", a.DB.CountPost())
+	ctx.Header("X-Total-Count", a.DB.CountPost(nil))
 	ctx.JSON(200, posts)
 }
 
