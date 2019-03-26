@@ -36,7 +36,11 @@ func (a *UserAPI) DeleteUserByID(ctx *gin.Context) {
 		if err := a.DB.DeleteUserByID(id); err == nil {
 			ctx.JSON(200, http.StatusOK)
 		} else {
-			ctx.AbortWithError(404, errors.New("user does not exist"))
+			if err != nil {
+				ctx.AbortWithError(500, err)
+			} else {
+				ctx.AbortWithError(404, errors.New("user does not exist"))
+			}
 		}
 	})
 }
