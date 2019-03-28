@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  api:
+  backend:
     image: lotteryjs/ten-minutes-app-api
     restart: always
     networks:
