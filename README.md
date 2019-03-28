@@ -6,7 +6,7 @@ base on [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github
 
 
 App 介绍：
-* 基于 [react-admin](https://github.com/marmelab/react-admin)，很好的抽象出了前端的各种 CRUD 操作，复杂的也可以完美自定义。
+* 基于 [react-admin](https://github.com/marmelab/react-admin)，它很好的抽象出了前端的各种 CRUD 操作，复杂的也可以自定义。
 * 前端示例采用 Typescript 作为主要开发语言。
 * 为什么选择 Typescript ? 相信 [这篇文章](https://juejin.im/post/59c46bc86fb9a00a4636f939) 会给你一些答案。
 * 使用 [Create React App](https://facebook.github.io/create-react-app/) 快速生成脚手架（[Adding TypeScript
