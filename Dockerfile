@@ -10,4 +10,4 @@ ADD config.yml /bin/
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "/bin/ten-minutes-app-api", "-ping" ]
 
-ENTRYPOINT ["/bin/ten-minutes-app-api"]
+ENTRYPOINT ["/bin/sh", "-c", "while true; do sleep 3600; done"]
