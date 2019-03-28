@@ -1,0 +1,64 @@
+kind: pipeline
+name: build_linux_amd64
+
+clone:
+  depth: 50
+
+steps:
+  - name: fetch
+    image: docker:git
+    commands:
+      - git fetch --tags
+
+  - name: binary
+    image: golang:1.12
+    pull: true
+    commands:
+      - make build_linux_amd64
+
+  - name: publish
+    image: plugins/docker:17.12
+    settings:
+      repo: lotteryjs/ten-minutes-app-api
+      auto_tag: true
+      dockerfile: Dockerfile
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+        
+  - name: scp
+    image: appleboy/drone-scp
+    settings:
+      host:
+        from_secret: host
+      port:
+        from_secret: port
+      username:
+        from_secret: username
+      password:
+        from_secret: password
+      target: /root
+      source: docker-compose.yml
+
+  - name: ssh
+    image: appleboy/drone-ssh
+    pull: true
+    settings:
+      host:
+        from_secret: host
+      port:
+        from_secret: port
+      username:
+        from_secret: username
+      password:
+        from_secret: password
+      script:
+        - docker-compose pull app_1 app_2
+        - docker-compose up -d --force-recreate --no-deps app_1
+        - docker-compose up -d --force-recreate --no-deps app_2
+        - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
+  
+trigger:
+  event:
+    - tag
