@@ -14,6 +14,7 @@ steps:
     image: golang:1.12
     pull: true
     commands:
+      - export LD_FLAGS="-w -s -X main.Version=$(git describe --tags | cut -c 2-) -X main.BuildDate=$(date "+%F-%T") -X main.Commit=$(git rev-parse --verify HEAD) -X main.Mode=prod"
       - make build_linux_amd64
 
   - name: publish
