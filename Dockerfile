@@ -1,4 +1,4 @@
-FROM plugins/base:multiarch
+FROM frolvlad/alpine-glibc:glibc-2.29
 
 LABEL maintainer="lotteryjs <lotter8js@gmail.com>" \
   org.label-schema.name="Ten Minutes App API" \
