@@ -13,5 +13,5 @@ server:
 
 database: # for database see (configure database section)
   dbname: tenapi
-  connection: mongodb://root:123456@mongo:4.0.6:27017
+  connection: mongodb://root:123456@express-mongo_mongo_1:27017
 
