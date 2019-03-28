@@ -39,7 +39,7 @@ steps:
         from_secret: username
       password:
         from_secret: password
-      target: /data/wwwroot/tma-api
+      target: /data/wwwroot/tenapi
       source: docker-compose.yml
 
   - name: ssh

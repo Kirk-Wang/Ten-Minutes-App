@@ -13,7 +13,7 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.basic.frontend.rule=Host:tma-api.lotteryjs.com"
+      - "traefik.basic.frontend.rule=Host:tenapi.lotteryjs.com"
       - "traefik.basic.port=6868"
       - "traefik.basic.protocol=http"
 
