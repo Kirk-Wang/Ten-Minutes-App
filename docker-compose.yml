@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  api:
+    image: lotteryjs/ten-minutes-app-api
+    restart: always
+    networks:
+      - web
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "3"
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:tma-api.lotteryjs.com"
+      - "traefik.basic.port=6868"
+      - "traefik.basic.protocol=http"
+
+networks:
+  web:
+    external: true
