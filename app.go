@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	// Version the version of TMAPI.
+	// Version the version of TMA.
 	Version = "unknown"
 	// Commit the git commit hash of this version.
 	Commit = "unknown"
@@ -28,7 +28,7 @@ func main() {
 	vInfo := &model.VersionInfo{Version: Version, Commit: Commit, BuildDate: BuildDate}
 	mode.Set(Mode)
 
-	fmt.Println("Starting TMAPI version", vInfo.Version+"@"+BuildDate)
+	fmt.Println("Starting TMA version", vInfo.Version+"@"+BuildDate)
 	rand.Seed(time.Now().UnixNano())
 	conf := config.Get()
 
