@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo:4.0.6
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: example
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    networks:
+      - web
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "3"
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:mongo-express.example.com"
+      - "traefik.basic.port=8081"
+      - "traefik.basic.protocol=http"
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: example
+      ME_CONFIG_BASICAUTH_PASSWORD: example
+      ME_CONFIG_MONGODB_ADMINUSERNAME: example
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+networks:
+  web:
+    external: true
