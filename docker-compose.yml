@@ -2,7 +2,7 @@ version: '3'
 
 services:
   api:
-    image: lotteryjs/api-ten-m
+    image: lotteryjs/api-ten-minutes
     networks:
       - web
     logging:
@@ -12,7 +12,7 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.basic.frontend.rule=Host:api-ten-m.lotteryjs.com"
+      - "traefik.basic.frontend.rule=Host:api-ten-minutes.lotteryjs.com"
       - "traefik.basic.port=6868"
       - "traefik.basic.protocol=http"
 

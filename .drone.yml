@@ -20,7 +20,7 @@ steps:
   - name: publish
     image: plugins/docker:17.12
     settings:
-      repo: lotteryjs/api-ten-m
+      repo: lotteryjs/api-ten-minutes
       auto_tag: true
       dockerfile: Dockerfile
       username:
