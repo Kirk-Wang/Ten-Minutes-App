@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  backend:
+  api:
     image: lotteryjs/ten-minutes-app-api
     networks:
       - web

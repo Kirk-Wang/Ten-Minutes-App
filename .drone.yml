@@ -20,7 +20,7 @@ steps:
   - name: publish
     image: plugins/docker:17.12
     settings:
-      repo: lotteryjs/ten-minutes-app-api
+      repo: lotteryjs/api-ten-m
       auto_tag: true
       dockerfile: Dockerfile
       username:
@@ -55,8 +55,8 @@ steps:
       password:
         from_secret: password
       script:
-        - docker-compose pull backend
-        - docker-compose up -d --force-recreate --no-deps backend
+        - docker-compose pull api
+        - docker-compose up -d --force-recreate --no-deps api
         - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
   
 trigger:
