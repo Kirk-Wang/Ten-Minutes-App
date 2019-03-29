@@ -4,7 +4,7 @@ import (
 	"context"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	// "go.mongodb.org/mongo-driver/mongo/readpref"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"time"
 )
 
@@ -16,12 +16,12 @@ func New(connection, dbname string) (*TenDatabase, error) {
 	if err != nil {
 		return nil, err
 	}
-	// ctxping, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	// defer cancel()
-	// err = client.Ping(ctxping, readpref.Primary())
-	// if err != nil {
-	// 	return nil, err
-	// }
+	ctxping, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	err = client.Ping(ctxping, readpref.Primary())
+	if err != nil {
+		return nil, err
+	}
 	db := client.Database(dbname)
 	return &TenDatabase{DB: db, Client: client, Context: ctx}, nil
 }
