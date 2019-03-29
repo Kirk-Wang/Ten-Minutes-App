@@ -2,7 +2,7 @@ version: '3'
 
 services:
   api:
-    image: lotteryjs/ten-minutes-app-api
+    image: lotteryjs/api-ten-m
     networks:
       - web
     logging:
