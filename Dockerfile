@@ -5,10 +5,10 @@ LABEL maintainer="lotteryjs <lotter8js@gmail.com>" \
   org.label-schema.vendor="LOTTERYJS" \
   org.label-schema.schema-version="1.0"
 
+WORKDIR /bin
 ADD release/linux/amd64/ten-minutes-app-api /bin/
 ADD config.yml /bin/
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "/bin/ten-minutes-app-api", "-ping" ]
 
-# ENTRYPOINT ["/bin/sh", "-c", "while true; do sleep 3600; done"]
-ENTRYPOINT ["/bin/sh", "/bin/ten-minutes-app-api"]
+ENTRYPOINT ["/bin/ten-minutes-app-api"]
