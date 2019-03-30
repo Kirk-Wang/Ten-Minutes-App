@@ -1,5 +1,7 @@
 # Ten-Minutes-App
 
+[😀 haha~ demo](https://ten-minutes.lotteryjs.com/)
+
 base on [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github.com/mongodb/mongo-go-driver) v1.x + [gin](https://github.com/gin-gonic/gin) v1.3.x + [mongodb](https://www.mongodb.com/) v4.0.6 + [JSONPlaceholder](http://jsonplaceholder.typicode.com/), [react-admin](https://github.com/marmelab/react-admin)
 
 [使用 Docker 一秒本地搭建 Mongodb&mongo-express 环境](https://github.com/Kirk-Wang/Hello-Gopher/tree/master/mongo)
