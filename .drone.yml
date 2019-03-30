@@ -10,17 +10,11 @@ steps:
     commands:
       - git fetch --tags
 
-  - name: restore-cache
-    image: drillster/drone-volume-cache
-    restore: true
-    mount:
-      - ./app/.yarn-cache
-      - ./app/node_modules
-    volumes:
-      - /tmp/cache:/cache
-
-  - name: build
+  - name: install & build
     image: node:10.15.1
+    volumes:
+    - name: cache
+      path: /tmp/cache
     commands:
       - cd app
       - node -v
@@ -83,6 +77,10 @@ steps:
       - /tmp/cache:/cache
     when:
       branch: master
+
+volumes:
+- name: cache
+  temp: {}
 
 trigger:
   event:
