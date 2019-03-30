@@ -59,7 +59,7 @@ steps:
         from_secret: password
       script:
         - cd /data/wwwroot/ten-minutes
-        - docker-compose pull ui-ten-minutes
+        - docker-compose -f docker-compose.API.yml pull ui-ten-minutes
         - docker-compose -f docker-compose.UI.yml up -d --force-recreate --no-deps ui-ten-minutes
         - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
 
@@ -132,7 +132,7 @@ steps:
         from_secret: password
       script:
         - cd /data/wwwroot/tenapi
-        - docker-compose pull api-ten-minutes
+        - docker-compose -f docker-compose.API.yml pull api-ten-minutes
         - docker-compose -f docker-compose.API.yml up -d --force-recreate --no-deps api-ten-minutes
         - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
   
