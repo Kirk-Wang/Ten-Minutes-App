@@ -20,8 +20,13 @@ func Create(db *database.TenDatabase, vInfo *model.VersionInfo, conf *config.Con
 
 	g.Use(func(ctx *gin.Context) {
 		ctx.Header("Content-Type", "application/json")
+		origin := ctx.Request.Header.Get("Origin")
 		for header, value := range conf.Server.ResponseHeaders {
-			ctx.Header(header, value)
+			if origin == "http://localhost:3000" && header == "Access-Control-Allow-Origin" {
+				ctx.Header("Access-Control-Allow-Origin", "http://localhost:3000")
+			} else {
+				ctx.Header(header, value)
+			}
 		}
 		if ctx.Request.Method == "OPTIONS" {
 			ctx.AbortWithStatus(http.StatusNoContent)
