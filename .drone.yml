@@ -1,16 +1,16 @@
 kind: pipeline
-name: build_ui
+name: CI/CD for UI
 
 clone:
   depth: 50
 
 steps:
-  - name: fetch
+  - name: fetch tags
     image: docker:git
     commands:
       - git fetch --tags
 
-  - name: install & build
+  - name: build
     image: node:10.15.1
     volumes:
     - name: cache
@@ -31,7 +31,7 @@ steps:
       password:
         from_secret: docker_password
         
-  - name: scp
+  - name: update docker-compose
     image: appleboy/drone-scp
     settings:
       host:
@@ -45,7 +45,7 @@ steps:
       target: /data/wwwroot/ten-minutes
       source: docker-compose.UI.yml
 
-  - name: ssh
+  - name: restart
     image: appleboy/drone-ssh
     pull: true
     settings:
@@ -75,25 +75,25 @@ trigger:
 ---
 
 kind: pipeline
-name: build_linux_amd64
+name: CI/CD for API
 
 clone:
   depth: 50
 
 steps:
-  - name: fetch
+  - name: fetch tags
     image: docker:git
     commands:
       - git fetch --tags
 
-  - name: binary
+  - name: build
     image: golang:1.12
     pull: true
     commands:
       - export LD_FLAGS="-w -s -X main.Version=$(git describe --tags | cut -c 2-) -X main.BuildDate=$(date "+%F-%T") -X main.Commit=$(git rev-parse --verify HEAD) -X main.Mode=prod"
       - make build_linux_amd64
 
-  - name: publish
+  - name: publish image
     image: plugins/docker:17.12
     settings:
       repo: lotteryjs/api-ten-minutes
@@ -104,7 +104,7 @@ steps:
       password:
         from_secret: docker_password
         
-  - name: scp
+  - name: update docker-compose
     image: appleboy/drone-scp
     settings:
       host:
@@ -118,7 +118,7 @@ steps:
       target: /data/wwwroot/tenapi
       source: docker-compose.API.yml
 
-  - name: ssh
+  - name: restart
     image: appleboy/drone-ssh
     pull: true
     settings:
