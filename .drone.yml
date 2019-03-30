@@ -40,7 +40,7 @@ steps:
       password:
         from_secret: password
       target: /data/wwwroot/tenapi
-      source: docker-compose.yml
+      source: docker-compose.API.yml
 
   - name: ssh
     image: appleboy/drone-ssh
@@ -57,7 +57,7 @@ steps:
       script:
         - cd /data/wwwroot/tenapi
         - docker-compose pull api-ten-minutes
-        - docker-compose up -d --force-recreate --no-deps api-ten-minutes
+        - docker-compose up -f docker-compose.API.yml -d --force-recreate --no-deps api-ten-minutes
         - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
   
 trigger:
