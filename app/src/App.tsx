@@ -7,7 +7,7 @@ import Dashboard from './Dashboard';
 import { PostList, PostEdit, PostCreate } from './Posts';
 import { UserList } from './Users';
 
-const dataProvider = jsonServerProvider("http://localhost:6868");
+const dataProvider = jsonServerProvider("https://api-ten-minutes.lotteryjs.com");
 const Title = () => (<div>Golang ❤️ MongoDB ❤️ React</div>)
 
 const App = () => (
