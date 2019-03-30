@@ -4,7 +4,7 @@ RUN apk add --no-cache tini && npm install http-server -g && mkdir /ten
 
 WORKDIR /ten
 
-ADD app/build .
+COPY app/build .
 
 EXPOSE 3000
 
