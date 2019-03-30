@@ -73,7 +73,7 @@ steps:
         - docker-compose -f docker-compose.UI.yml up -d --force-recreate --no-deps ui-ten-minutes
         - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
 
-  rebuild-cache:
+  - name: rebuild-cache
     image: drillster/drone-volume-cache
     rebuild: true
     mount:
