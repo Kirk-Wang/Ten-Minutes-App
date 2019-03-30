@@ -4,9 +4,9 @@ RUN apk add --no-cache tini && npm install http-server -g && mkdir /ten
 
 WORKDIR /ten
 
-ADD app/build/**/* ./
+ADD app/build .
 
 EXPOSE 3000
 
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD [ "http-server", "-p", "3000" ]
+CMD [ "http-server", "/ten/build", "-p", "3000" ]
