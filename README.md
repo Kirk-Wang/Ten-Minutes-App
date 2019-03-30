@@ -56,6 +56,10 @@ App 介绍：
 
 ![ui-post](./ui-post.png)
 
+# CI/CD
+
+![Drone-CI-CD](./drone_ci_cd.png)
+
 # Dev
 ```sh
 # api
