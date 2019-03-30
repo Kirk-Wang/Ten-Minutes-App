@@ -1,9 +1,10 @@
 FROM node:10.15.1-alpine
 
-RUN apk add --no-cache tini && npm install http-server -g
+RUN apk add --no-cache tini && npm install http-server -g && mkdir /ten
+
 WORKDIR /ten
 
-ADD app/build/** .
+ADD app/build/** ./
 
 EXPOSE 3000
 
