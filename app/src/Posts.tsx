@@ -32,26 +32,15 @@ const PostFilter = (props: any) => (
 
 export const PostList = (props: any) => (
   <List {...props} filters={<PostFilter />}>
-      <Responsive
-          small={
-              <SimpleList
-                  primaryText={(record:any) => record.title}
-                  secondaryText={(record:any) => `${record.views} views`}
-                  tertiaryText={(record:any) => new Date(record.published_at).toLocaleDateString()}
-              />
-          }
-          medium={
-              <Datagrid>
-                  <TextField source="id" />
-                  <ReferenceField label="User" source="userId" reference="users">
-                      <TextField source="name" />
-                  </ReferenceField>
-                  <TextField source="title" />
-                  <TextField source="body" />
-                  <EditButton />
-              </Datagrid>
-          }
-      />
+    <Datagrid>
+      <TextField source="id" />
+      <ReferenceField label="User" source="userId" reference="users">
+          <TextField source="name" />
+      </ReferenceField>
+      <TextField source="title" />
+      <TextField source="body" />
+      <EditButton />
+    </Datagrid>
   </List>
 );
 
