@@ -81,6 +81,7 @@ yarn & yarn start
 * [mongo-go-dirver offical examples](https://github.com/mongodb/mongo-go-driver/blob/master/examples/documentation_examples/examples.go)
 * [Go by Example](https://gobyexample.com/)
 * [gotify/server](https://github.com/gotify/server)
+* [gin-jwt](https://github.com/appleboy/gin-jwt)
 
 
 # Q
