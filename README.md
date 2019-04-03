@@ -82,6 +82,7 @@ yarn & yarn start
 * [Go by Example](https://gobyexample.com/)
 * [gotify/server](https://github.com/gotify/server)
 * [gin-jwt](https://github.com/appleboy/gin-jwt)
+* [prisma](https://github.com/prisma/prisma)，面向未来的后端框架
 
 
 # Q
