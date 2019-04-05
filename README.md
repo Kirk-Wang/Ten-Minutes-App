@@ -10,6 +10,14 @@
 
 LEXED -> PARSED -> VALIDATED -> EXECUTED
 
+Introspection(Why need the introspection)
+* code generation
+* auto documentaion
+* static validation
+* IDE Integration
+
+
+
 
 [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github.com/mongodb/mongo-go-driver) v1.x + [gin](https://github.com/gin-gonic/gin) v1.3.x + [mongodb](https://www.mongodb.com/) v4.0.6 + [JSONPlaceholder](http://jsonplaceholder.typicode.com/), [react-admin](https://github.com/marmelab/react-admin)
 
