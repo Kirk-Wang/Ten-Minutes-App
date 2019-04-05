@@ -16,10 +16,14 @@
 LEXED -> PARSED -> VALIDATED -> EXECUTED
 
 Introspection(Why need the introspection)
+
 * code generation
 * auto documentaion
 * static validation
 * IDE Integration
+
+Resolving Fileds
+
 
 
 
