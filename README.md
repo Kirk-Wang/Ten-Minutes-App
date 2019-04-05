@@ -24,6 +24,10 @@ Introspection(Why need the introspection)
 
 Resolving Fileds
 
+Mutation
+
+POST/graphql(single endpoint)
+
 
 
 
