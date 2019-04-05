@@ -8,6 +8,11 @@
 
 #### [graphql](https://graphql.org/)
 
+[GraphiQL](https://github.com/graphql/graphiql)
+
+[graphql-playground](https://github.com/prisma/graphql-playground)
+
+
 LEXED -> PARSED -> VALIDATED -> EXECUTED
 
 Introspection(Why need the introspection)
