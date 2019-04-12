@@ -6,11 +6,6 @@
 
 <img src="https://github.com/go-training/drone-golang-example/raw/master/screenshots/traefik+docker+golang.png" width="400">
 
-#### [graphql](https://graphql.org/)
-
-[GraphiQL](https://github.com/graphql/graphiql)
-
-[graphql-playground](https://github.com/prisma/graphql-playground)
 
 [golang](https://golang.org/) v1.12.x + [mongo-go-driver](https://github.com/mongodb/mongo-go-driver) v1.x + [gin](https://github.com/gin-gonic/gin) v1.3.x + [mongodb](https://www.mongodb.com/) v4.0.6 + [JSONPlaceholder](http://jsonplaceholder.typicode.com/), [react-admin](https://github.com/marmelab/react-admin)
 
@@ -87,6 +82,8 @@ yarn & yarn start
 * [Go by Example](https://gobyexample.com/)
 * [gotify/server](https://github.com/gotify/server)
 * [gin-jwt](https://github.com/appleboy/gin-jwt)
+
+# TODO
 * [prisma](https://github.com/prisma/prisma), Prisma replaces traditional ORMs
 
 
