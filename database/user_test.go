@@ -50,3 +50,9 @@ func (s *DatabaseSuite) TestGetUsers() {
 
 	assert.Len(s.T(), users, 1)
 }
+
+func (s *DatabaseSuite) TestGetUserByName() {
+	user := s.db.GetUserByName("Graham")
+
+	assert.Equal(s.T(), user.Name, "Graham")
+}
