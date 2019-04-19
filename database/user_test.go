@@ -33,3 +33,20 @@ func (s *DatabaseSuite) TestCreateUser() {
 	err := s.db.CreateUser(kirk)
 	assert.Nil(s.T(), err)
 }
+
+func (s *DatabaseSuite) TestGetUsers() {
+	start := int64(0)
+	limit := int64(10)
+	sort := "_id"
+	order := -1
+
+	users := s.db.GetUsers(&model.Paging{
+		Skip:      &start,
+		Limit:     &limit,
+		SortKey:   sort,
+		SortVal:   order,
+		Condition: nil,
+	})
+
+	assert.Len(s.T(), users, 1)
+}

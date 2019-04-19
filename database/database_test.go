@@ -28,24 +28,6 @@ func (s *DatabaseSuite) AfterTest(suiteName, testName string) {
 	s.db.Close()
 }
 
-func (s *DatabaseSuite) TestUser() {
-
-	start := int64(0)
-	limit := int64(10)
-	sort := "_id"
-	order := -1
-
-	users := s.db.GetUsers(&model.Paging{
-		Skip:      &start,
-		Limit:     &limit,
-		SortKey:   sort,
-		SortVal:   order,
-		Condition: nil,
-	})
-
-	assert.Len(s.T(), users, 1)
-}
-
 func (s *DatabaseSuite) TestGetUserByIDs() {
 	id1, _ := primitive.ObjectIDFromHex("5c933ae7a49cac27417def6f")
 	id2, _ := primitive.ObjectIDFromHex("5c933ae7a49cac27417def70")
