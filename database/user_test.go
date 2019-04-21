@@ -65,3 +65,8 @@ func (s *DatabaseSuite) TestGetUserByIDs() {
 
 	assert.Len(s.T(), users, 1)
 }
+
+func (s *DatabaseSuite) TestCountUser() {
+	len := s.db.CountUser()
+	assert.Equal(s.T(), len, "1")
+}
