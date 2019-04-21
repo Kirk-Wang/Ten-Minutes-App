@@ -28,15 +28,6 @@ func (s *DatabaseSuite) AfterTest(suiteName, testName string) {
 	s.db.Close()
 }
 
-func (s *DatabaseSuite) TestGetUserByIDs() {
-	id1, _ := primitive.ObjectIDFromHex("5c933ae7a49cac27417def6f")
-	id2, _ := primitive.ObjectIDFromHex("5c933ae7a49cac27417def70")
-
-	ids := []primitive.ObjectID{id1, id2}
-	users := s.db.GetUserByIDs(ids)
-	assert.Equal(s.T(), 2, len(users))
-}
-
 func (s *DatabaseSuite) TestPost() {
 	s.db.DB.Collection("posts").Drop(nil)
 

@@ -3,6 +3,7 @@ package database
 import (
 	"github.com/lotteryjs/ten-minutes-app/model"
 	"github.com/stretchr/testify/assert"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func (s *DatabaseSuite) TestCreateUser() {
@@ -55,4 +56,12 @@ func (s *DatabaseSuite) TestGetUserByName() {
 	user := s.db.GetUserByName("Graham")
 
 	assert.Equal(s.T(), user.Name, "Graham")
+}
+
+func (s *DatabaseSuite) TestGetUserByIDs() {
+	user := s.db.GetUserByName("Graham")
+	objectIds := []primitive.ObjectID{user.ID}
+	users := s.db.GetUserByIDs(objectIds)
+
+	assert.Len(s.T(), users, 1)
 }
