@@ -70,3 +70,10 @@ func (s *DatabaseSuite) TestCountUser() {
 	len := s.db.CountUser()
 	assert.Equal(s.T(), len, "1")
 }
+
+func (s *DatabaseSuite) TestDeleteUserByID() {
+	user := s.db.GetUserByName("Graham")
+	s.db.DeleteUserByID(user.ID)
+	len := s.db.CountUser()
+	assert.Equal(s.T(), len, "0")
+}
