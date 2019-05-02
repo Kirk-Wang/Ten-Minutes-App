@@ -83,10 +83,6 @@ yarn & yarn start
 * [gotify/server](https://github.com/gotify/server)
 * [gin-jwt](https://github.com/appleboy/gin-jwt)
 
-# TODO
-* [prisma](https://github.com/prisma/prisma), Prisma replaces traditional ORMs
-
-
 # Q
 * [Composite literal uses unkeyed fields](https://stackoverflow.com/questions/54548441/composite-literal-uses-unkeyed-fields)
 * [Convert between int, int64 and string](https://yourbasic.org/golang/convert-int-to-string/)
