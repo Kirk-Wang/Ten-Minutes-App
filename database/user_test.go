@@ -55,7 +55,7 @@ func (s *DatabaseSuite) TestGetUsers() {
 func (s *DatabaseSuite) TestGetUserByName() {
 	user := s.db.GetUserByName("Graham")
 
-	assert.Equal(s.T(), user.Name, "Graham")
+	assert.Equal(s.T(), "Graham", user.Name)
 }
 
 func (s *DatabaseSuite) TestGetUserByIDs() {
@@ -75,5 +75,5 @@ func (s *DatabaseSuite) TestDeleteUserByID() {
 	user := s.db.GetUserByName("Graham")
 	s.db.DeleteUserByID(user.ID)
 	len := s.db.CountUser()
-	assert.Equal(s.T(), len, "0")
+	assert.Equal(s.T(), "0", len)
 }
