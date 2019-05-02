@@ -20,7 +20,7 @@ func (s *DatabaseSuite) TestCreatePost() {
 	s.db.CreatePost(article)
 	post := s.db.GetPostByID(article.ID)
 
-	assert.Equal(s.T(), article, post)
+	assert.Equal(s.T(), post, article)
 }
 
 func (s *DatabaseSuite) TestCountPost() {
