@@ -1,14 +1,10 @@
 package component
 
-type CompWithOptions struct {
+type Components struct {
 	nonBlockingComponents []Component
 	blockingComponents    []Component
 }
 
-type Components struct {
-	comps []CompWithOptions
-}
+func (cs *Components) Register(nonBlocking, blocking Component) {}
 
-func (cs *Components) Register(nonBlocking, blocking Component) {
-	cs.comps = append(cs.comps, CompWithOptions{c, options})
-}
+func (cs *Components) List() []CompWithOptions {}
