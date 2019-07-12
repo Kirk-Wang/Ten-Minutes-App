@@ -9,6 +9,6 @@ func (c *Base) Setup(EngineContext) {}
 
 func (c *Base) Start(EngineContext) {}
 
-func (c *Base) StartBlocking(EngineContext) {}
+func (s *Base) StartBlocking() bool { return false }
 
 func (c *Base) Shutdown(EngineContext) {}
