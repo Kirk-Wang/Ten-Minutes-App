@@ -1,6 +1,8 @@
 package component
 
 import (
+	"reflect"
+
 	log "github.com/sirupsen/logrus"
 )
 
@@ -21,8 +23,8 @@ func (cs *components) Register(component Component) {
 	log.Infof("Registers a component: %s", typ.String())
 }
 
-func (cs *components) List() []Components {
-	components := make([]components, 0)
+func (cs *components) List() []Component {
+	components := make([]Component, 0)
 	components = append(components, cs.nonBlockingComponents...)
 	components = append(components, cs.blockingComponents...)
 	return components
@@ -36,6 +38,6 @@ func Register(c Component) {
 }
 
 // GetComponents returns all components
-func GetComponents() []Starter {
+func GetComponents() []Component {
 	return manager.List()
 }
