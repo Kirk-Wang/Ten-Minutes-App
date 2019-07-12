@@ -1,17 +1,19 @@
 package infrastructure
 
 import (
-	log "github.com/sirupsen/logrus"
 	"reflect"
+
+	log "github.com/sirupsen/logrus"
+
+	"github.com/lotteryjs/Ten-Minutes-App/infrastructure/engines"
 )
 
 type Runer struct {
-	engineCtx EngineContext
+	engineCtx engines.EngineContext
 }
 
 func New() *Runer {
-	e := &Runer{engineCtx: EngineContext{}}
-	return e
+	return &Runer{engineCtx: engines.EngineContext{}}
 }
 
 func (r *Runer) Start() {
@@ -22,44 +24,44 @@ func (r *Runer) Start() {
 
 func (r *Runer) init() {
 	log.Info("Initializing engines...")
-	for _, v := range GetEngines() {
+	for _, v := range engines.GetEngines() {
 		typ := reflect.TypeOf(v)
 		log.Debugf("Initializing: type=%s", typ.String())
-		v.Init(e.engineCtx)
+		v.Init(r.engineCtx)
 	}
 }
 
-func (e *Runer) setup() {
+func (r *Runer) setup() {
 	log.Info("Setup engines...")
-	for _, v := range GetEngines() {
+	for _, v := range engines.GetEngines() {
 		typ := reflect.TypeOf(v)
 		log.Debug("Setup: ", typ.String())
-		v.Setup(e.engineCtx)
+		v.Setup(r.engineCtx)
 	}
 }
 
-func (e *Runer) start() {
+func (r *Runer) start() {
 	log.Info("Starting engines...")
-	for i, v := range GetEngines() {
+	for i, v := range engines.GetEngines() {
 		typ := reflect.TypeOf(v)
 		log.Debug("Starting: ", typ.String())
 		if v.StartBlocking() {
-			if i+1 == len(GetEngines()) {
-				v.Start(e.engineCtx)
+			if i+1 == len(engines.GetEngines()) {
+				v.Start(r.engineCtx)
 			} else {
-				go v.Start(e.engineCtx)
+				go v.Start(r.engineCtx)
 			}
 		} else {
-			v.Start(e.engineCtx)
+			v.Start(r.engineCtx)
 		}
 	}
 }
 
-func (e *Runer) Stop() {
+func (r *Runer) Stop() {
 	log.Info("Stoping engines...")
-	for _, v := range GetEngines() {
+	for _, v := range engines.GetEngines() {
 		typ := reflect.TypeOf(v)
 		log.Debug("Stoping: ", typ.String())
-		v.Stop(e.engineCtx)
+		v.Shutdown(r.engineCtx)
 	}
 }

@@ -38,9 +38,6 @@ func initGin() *gin.Engine {
 	// Recovery middleware recovers from any panics and writes a 500 if there was one.
 	g.Use(gin.Recovery())
 
-	// Per route middleware, you can add as many as you desire.
-	g.GET("/benchmark", MyBenchLogger(), benchEndpoint)
-
 	return g
 }
 
