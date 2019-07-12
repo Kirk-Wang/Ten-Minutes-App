@@ -4,13 +4,13 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type Components struct {
+// internal
+type components struct {
 	nonBlockingComponents []Component
 	blockingComponents    []Component
 }
 
-// Register registers a component to nonBlockingComponents or blockingComponents
-func (cs *Components) Register(component Component) {
+func (cs *components) Register(component Component) {
 	if component.StartBlocking() {
 		cs.blockingComponents = append(cs.blockingComponents, component)
 	} else {
@@ -21,10 +21,21 @@ func (cs *Components) Register(component Component) {
 	log.Infof("Registers a component: %s", typ.String())
 }
 
-// List returns all components
-func (cs *Components) List() []Components {
+func (cs *components) List() []Components {
 	components := make([]components, 0)
 	components = append(components, cs.nonBlockingComponents...)
 	components = append(components, cs.blockingComponents...)
 	return components
+}
+
+var manager *components = &components{}
+
+// Register registers a component to nonBlockingComponents or blockingComponents
+func Register(c Component) {
+	manager.Register(c)
+}
+
+// GetComponents returns all components
+func GetComponents() []Starter {
+	return manager.List()
 }
