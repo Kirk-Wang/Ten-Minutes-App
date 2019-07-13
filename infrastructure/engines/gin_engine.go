@@ -40,4 +40,3 @@ func initGin() *gin.Engine {
 
 	return g
 }
-
